@@ -11,6 +11,15 @@ import {
 import { Card } from "./ui/card";
 import { AboutMe } from "./tiles/about-me";
 import { cn } from "@/lib/utils";
+import { Map } from "./tiles/map";
+import { Project1 } from "./tiles/project1";
+import { Music } from "./tiles/music";
+import { Twitter } from "./tiles/twitter";
+import { DarkMode } from "./tiles/dark-mode";
+import { History } from "./tiles/history";
+import { Project2 } from "./tiles/project2";
+import { Project3 } from "./tiles/project3";
+import { Subscribe } from "./tiles/subscribe";
 
 interface LayoutProps {
     tab: TabKey;
@@ -20,16 +29,16 @@ interface LayoutProps {
 }
 
 const componentMap: Record<string, React.ReactNode> = {
-    a: <div className="bg-red-400">A Component</div>,
-    b: <div className="bg-blue-400">B Component</div>,
-    c: <div className="bg-green-400">C Component</div>,
-    d: <div className="bg-yellow-400">D Component</div>,
-    e: <div className="bg-pink-400">E Component</div>,
-    f: <div className="bg-purple-400">F Component</div>,
-    g: <div className="bg-gray-400">G Component</div>,
-    h: <div className="bg-orange-400">H Component</div>,
-    i: <div className="bg-lime-400">I Component</div>,
-    j: <div className="bg-teal-400">J Component</div>,
+    a: <AboutMe />,
+    b: <Map />,
+    c: <Project1 />,
+    d: <Music />,
+    e: <Twitter />,
+    f: <DarkMode />,
+    g: <History />,
+    h: <Project2 />,
+    i: <Project3 />,
+    j: <Subscribe />,
 };
 
 function Layout({ tab }: LayoutProps) {
