@@ -2,10 +2,10 @@ import { useEffect, useMemo, useState } from "react";
 import { Responsive, WidthProvider } from "react-grid-layout";
 import { TabKey } from "../App";
 import {
-    ContactLayouts,
+    AboutLayouts,
     HomeLayouts,
-    NotesLayouts,
-    WorkLayouts,
+    MediaLayouts,
+    ProjectLayouts,
     keys,
 } from "@/utils/layout.helper";
 import { Card, CardHeader, CardTitle } from "./ui/card";
@@ -22,17 +22,17 @@ function Layout({ tab }: LayoutProps) {
 
     useEffect(() => {
         switch (tab) {
-            case TabKey.Work:
-                setCurrentLayout(WorkLayouts);
+            case TabKey.Projects:
+                setCurrentLayout(ProjectLayouts);
                 break;
             case TabKey.Home:
                 setCurrentLayout(HomeLayouts);
                 break;
-            case TabKey.Contact:
-                setCurrentLayout(ContactLayouts);
+            case TabKey.About:
+                setCurrentLayout(AboutLayouts);
                 break;
-            case TabKey.Blog:
-                setCurrentLayout(NotesLayouts);
+            case TabKey.Media:
+                setCurrentLayout(MediaLayouts);
                 break;
             default:
                 setCurrentLayout(HomeLayouts);

@@ -4,9 +4,9 @@ import Navbar from "@/components/navbar";
 
 export enum TabKey {
     Home = "Home",
-    Work = "Work",
-    Blog = "Blog",
-    Contact = "Contact",
+    Projects = "Projects",
+    Media = "Media",
+    About = "About",
 }
 
 function App() {
