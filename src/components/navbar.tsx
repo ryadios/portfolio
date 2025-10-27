@@ -20,16 +20,16 @@ const Navbar = ({
 }: NavbarProps) => {
     const tabs = [
         { key: TabKey.Home, label: "Home" },
-        { key: TabKey.Work, label: "Projects" },
-        { key: TabKey.Blog, label: "Writing" },
-        { key: TabKey.Contact, label: "Contact" },
+        { key: TabKey.About, label: "About" },
+        { key: TabKey.Projects, label: "Projects" },
+        { key: TabKey.Media, label: "Media" },
     ];
 
     const tabRefs = useRef<Record<TabKey, HTMLDivElement | null>>({
         [TabKey.Home]: null,
-        [TabKey.Work]: null,
-        [TabKey.Blog]: null,
-        [TabKey.Contact]: null,
+        [TabKey.About]: null,
+        [TabKey.Projects]: null,
+        [TabKey.Media]: null,
     });
 
     useEffect(() => {
