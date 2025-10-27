@@ -8,7 +8,9 @@ import {
     ProjectLayouts,
     keys,
 } from "@/utils/layout.helper";
-import { Card, CardHeader, CardTitle } from "./ui/card";
+import { Card } from "./ui/card";
+import { AboutMe } from "./tiles/about-me";
+import { cn } from "@/lib/utils";
 
 interface LayoutProps {
     tab: TabKey;
@@ -17,8 +19,23 @@ interface LayoutProps {
     sliderWidth?: number;
 }
 
+const componentMap: Record<string, React.ReactNode> = {
+    a: <div className="bg-red-400">A Component</div>,
+    b: <div className="bg-blue-400">B Component</div>,
+    c: <div className="bg-green-400">C Component</div>,
+    d: <div className="bg-yellow-400">D Component</div>,
+    e: <div className="bg-pink-400">E Component</div>,
+    f: <div className="bg-purple-400">F Component</div>,
+    g: <div className="bg-gray-400">G Component</div>,
+    h: <div className="bg-orange-400">H Component</div>,
+    i: <div className="bg-lime-400">I Component</div>,
+    j: <div className="bg-teal-400">J Component</div>,
+};
+
 function Layout({ tab }: LayoutProps) {
     const [currentlayout, setCurrentLayout] = useState(HomeLayouts);
+    const [breakpoint, setBreakpoint] =
+        useState<keyof typeof currentlayout>("lg");
 
     useEffect(() => {
         switch (tab) {
@@ -43,6 +60,7 @@ function Layout({ tab }: LayoutProps) {
         () => WidthProvider(Responsive),
         []
     );
+    const activeLayout = currentlayout[breakpoint] || currentlayout.lg;
 
     return (
         <div className="w-screen m-auto flex justify-between">
@@ -53,17 +71,27 @@ function Layout({ tab }: LayoutProps) {
                 rowHeight={300}
                 layouts={currentlayout}
                 isResizable={false}
+                onBreakpointChange={(bp) =>
+                    setBreakpoint(bp === "xs" ? "xs" : "lg")
+                }
             >
-                {keys.map((key) => (
-                    <Card
-                        key={key}
-                        className="flex justify-center items-center visible cursor-grab active:cursor-grabbing"
-                    >
-                        <CardHeader>
-                            <CardTitle>{key}</CardTitle>
-                        </CardHeader>
-                    </Card>
-                ))}
+                {keys.map((key) => {
+                    const layoutItem = activeLayout.find(
+                        (item) => item.i === key
+                    );
+                    const disabled = layoutItem?.disabled ?? false;
+                    return (
+                        <Card
+                            key={key}
+                            className={cn(
+                                "visible cursor-grab active:cursor-grabbing",
+                                disabled && "opacity-40"
+                            )}
+                        >
+                            {componentMap[key]}
+                        </Card>
+                    );
+                })}
             </ResponsiveReactGridLayout>
         </div>
     );
