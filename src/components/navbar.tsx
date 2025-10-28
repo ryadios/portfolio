@@ -56,9 +56,9 @@ const Navbar = ({
         };
     }, [tab, setW, setX]);
     return (
-        <nav className="w-full flex items-center justify-between py-10 px-16 font-semibold text-sm">
+        <nav className="w-full flex items-center justify-between py-10 px-16 text-sm">
             <div>
-                <p className="text-xl font-extrabold">ryadi</p>
+                <p className="text-xl font-bold">ryadi</p>
             </div>
             <div className="relative flex items-center justify-between gap-2 bg-[#EDE9E9] rounded-xl p-1">
                 {tabs.map(({ key, label }) => (
