@@ -83,6 +83,7 @@ function Layout({ tab }: LayoutProps) {
                 onBreakpointChange={(bp) =>
                     setBreakpoint(bp === "xs" ? "xs" : "lg")
                 }
+                draggableCancel=".no-drag"
             >
                 {keys.map((key) => {
                     const layoutItem = activeLayout.find(
@@ -93,7 +94,7 @@ function Layout({ tab }: LayoutProps) {
                         <Card
                             key={key}
                             className={cn(
-                                "visible cursor-grab active:cursor-grabbing",
+                                "visible cursor-grab active:cursor-grabbing [box-shadow:inset_0_0_0_2px_transparent]",
                                 disabled && "opacity-40"
                             )}
                         >
