@@ -38,8 +38,12 @@ const Navbar = ({
 
             if (currentTabRef) {
                 const rect = currentTabRef.getBoundingClientRect();
-                setX(rect.left);
-                setW(rect.width);
+                const parentRect =
+                    currentTabRef.parentElement?.getBoundingClientRect();
+                if (parentRect) {
+                    setX(rect.left - parentRect.left);
+                    setW(rect.width);
+                }
             }
         };
 
@@ -50,37 +54,42 @@ const Navbar = ({
         return () => {
             window.removeEventListener("resize", calculateSliderPosition);
         };
-    }, [tab]);
+    }, [tab, setW, setX]);
     return (
-        <div className="navbar bg-black-1 text-white mx-auto sticky top-0 z-[10000] backdrop-saturate-180 backdrop-blur-lg md:display-none pt-2">
-            <div className="bg-white max-w-[900px] m-auto rounded-full text-1.8rem border-b border-gray-200 p-[3px]">
-                <div className="flex rounded-33px p-2 justify-between items-center text-[#111827] max-w-[900px] mx-auto">
-                    {tabs.map(({ key, label }) => (
-                        <div
-                            key={key}
-                            ref={(el) => {
-                                tabRefs.current[key] = el;
-                            }}
-                            className={`tab flex items-center h-8 flex-1 cursor-pointer justify-center ${
-                                tab === key ? "text-black" : "text-black-300"
-                            }`}
-                            onClick={() => setTab(key)}
-                        >
-                            {label}
-                        </div>
-                    ))}
-                    <div
-                        className="absolute h-10 bg-[#fc205e]/40 border border-[#fc205e] rounded-full z-20"
-                        style={{
-                            left: `${left}px`,
-                            width: `${sliderWidth}px`,
-                            transition:
-                                "left 0.38s cubic-bezier(0.5, 0, 0, 0.75)",
-                        }}
-                    ></div>
-                </div>
+        <nav className="w-full flex items-center justify-between py-10 px-16 font-semibold text-sm">
+            <div>
+                <p className="text-xl font-extrabold">ryadi</p>
             </div>
-        </div>
+            <div className="relative flex items-center justify-between gap-2 bg-[#EDE9E9] rounded-xl p-1">
+                {tabs.map(({ key, label }) => (
+                    <div
+                        key={key}
+                        ref={(el) => {
+                            tabRefs.current[key] = el;
+                        }}
+                        className={`tab flex items-center h-9 flex-1 cursor-pointer justify-center z-20 px-4 py-1.5 transition-colors ease-linear ${
+                            tab === key
+                                ? "text-black"
+                                : "text-black-300 hover:text-black/50"
+                        }`}
+                        onClick={() => setTab(key)}
+                    >
+                        {label}
+                    </div>
+                ))}
+                <div
+                    className="absolute bg-background/80 rounded-xl z-10 p-1 h-9 ease-out"
+                    style={{
+                        left: `${left}px`,
+                        width: `${sliderWidth}px`,
+                        transition: "left 0.38s",
+                    }}
+                ></div>
+            </div>
+            <div className="text-black hover:text-black/50 cursor-pointer transition-colors ease-linear">
+                <a>Contact</a>
+            </div>
+        </nav>
     );
 };
 

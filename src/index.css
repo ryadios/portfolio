@@ -5,6 +5,14 @@
 
 @custom-variant dark (&:is(.dark *));
 
+@font-face {
+    font-family: "Silka";
+    src: url("/fonts/Silka-Regular.otf") format("opentype");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
 :root {
     --background: oklch(1 0 0);
     --foreground: oklch(0.145 0 0);
@@ -41,6 +49,7 @@
     --font-sans: system-ui, sans-serif;
     --font-serif: serif;
     --font-mono: monospace;
+    --font-silka: "Silka", sans-serif;
     --radius: 1.75rem;
     --shadow-x: 0px;
     --shadow-y: 8px;
@@ -185,6 +194,7 @@
 
 body {
     letter-spacing: var(--tracking-normal);
+    font-family: var(--font-silka);
 }
 
 @layer base {
