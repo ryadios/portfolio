@@ -56,7 +56,7 @@ const Navbar = ({
         };
     }, [tab, setW, setX]);
     return (
-        <nav className="w-full flex items-center justify-between py-10 px-16 text-sm">
+        <nav className="w-full flex items-center justify-between py-10 px-16 text-sm font-medium">
             <div>
                 <p className="text-xl font-bold">ryadi</p>
             </div>
@@ -67,10 +67,10 @@ const Navbar = ({
                         ref={(el) => {
                             tabRefs.current[key] = el;
                         }}
-                        className={`tab flex items-center h-9 flex-1 cursor-pointer justify-center z-20 px-4 py-1.5 transition-colors ease-linear ${
+                        className={`tab flex items-center h-9 flex-1 cursor-pointer justify-center z-20 px-4 py-1.5 ${
                             tab === key
                                 ? "text-black"
-                                : "text-black-300 hover:text-black/50"
+                                : "text-black-300 hover:opacity-50 transition-opacity duration-[0.25s]"
                         }`}
                         onClick={() => setTab(key)}
                     >
@@ -86,7 +86,7 @@ const Navbar = ({
                     }}
                 ></div>
             </div>
-            <div className="text-black hover:text-black/50 cursor-pointer transition-colors ease-linear">
+            <div className="text-black hover:opacity-50 cursor-pointer transition-opacity duration-[0.25s]">
                 <a>Contact</a>
             </div>
         </nav>
