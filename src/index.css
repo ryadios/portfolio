@@ -7,7 +7,7 @@
 
 @font-face {
     font-family: "Silka";
-    src: url("/fonts/Silka-Regular.otf") format("opentype");
+    src: url("/fonts/Silka/Silka-Regular.otf") format("opentype");
     font-weight: 400;
     font-style: normal;
     font-display: swap;
@@ -15,7 +15,7 @@
 
 @font-face {
     font-family: "Silka";
-    src: url("/fonts/Silka-Bold.otf") format("opentype");
+    src: url("/fonts/Silka/Silka-Bold.otf") format("opentype");
     font-weight: 800;
     font-style: normal;
     font-display: swap;
@@ -23,16 +23,40 @@
 
 @font-face {
     font-family: "Silka";
-    src: url("/fonts/Silka-Medium.otf") format("opentype");
+    src: url("/fonts/Silka/Silka-Medium.otf") format("opentype");
     font-weight: 500;
     font-style: normal;
     font-display: swap;
 }
 
 @font-face {
-    font-family: "Moranga Bold";
-    src: url("/fonts/Moranga-Bold.otf") format("opentype");
-    font-weight: 800;
+    font-family: "Moranga";
+    src: url("/fonts/Moranga/Moranga-Light.otf") format("opentype");
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Moranga";
+    src: url("/fonts/Moranga/Moranga-Regular.otf") format("opentype");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Moranga";
+    src: url("/fonts/Moranga/Moranga-Medium.otf") format("opentype");
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Moranga";
+    src: url("/fonts/Moranga/Moranga-Bold.otf") format("opentype");
+    font-weight: 700;
     font-style: normal;
     font-display: swap;
 }
@@ -222,7 +246,11 @@ body {
 }
 
 .font-moranga {
-    font-family: "Moranga Bold";
+    font-family: "Moranga";
+}
+
+.spotify-text {
+    color: rgb(110, 210, 183);
 }
 
 @layer base {
