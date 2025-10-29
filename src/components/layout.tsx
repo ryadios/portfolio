@@ -94,7 +94,7 @@ function Layout({ tab }: LayoutProps) {
                         <Card
                             key={key}
                             className={cn(
-                                "visible cursor-grab active:cursor-grabbing [box-shadow:inset_0_0_0_2px_transparent]",
+                                "visible cursor-grab active:cursor-grabbing [box-shadow:inset_0_0_0_2px_transparent] p-0",
                                 disabled && "opacity-40"
                             )}
                         >
