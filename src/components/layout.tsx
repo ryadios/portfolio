@@ -13,7 +13,7 @@ import { AboutMe } from "./tiles/about-me";
 import { cn } from "@/lib/utils";
 import { Map } from "./tiles/map";
 import { Project1 } from "./tiles/project1";
-import { Music } from "./tiles/music";
+import { Spotify } from "./tiles/spotify";
 import { Twitter } from "./tiles/twitter";
 import { DarkMode } from "./tiles/dark-mode";
 import { History } from "./tiles/history";
@@ -32,7 +32,7 @@ const componentMap: Record<string, React.ReactNode> = {
     a: <AboutMe />,
     b: <Map />,
     c: <Project1 />,
-    d: <Music />,
+    d: <Spotify />,
     e: <Twitter />,
     f: <DarkMode />,
     g: <History />,
@@ -77,7 +77,7 @@ function Layout({ tab }: LayoutProps) {
                 className="m-auto w-[1200px] gap-12"
                 breakpoints={{ xl: 1200, lg: 899, md: 768, sm: 480, xs: 200 }}
                 cols={{ xl: 4, lg: 4, md: 2, sm: 1, xs: 1 }}
-                rowHeight={300}
+                rowHeight={280}
                 layouts={currentlayout}
                 isResizable={false}
                 onBreakpointChange={(bp) =>

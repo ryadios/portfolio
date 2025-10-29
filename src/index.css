@@ -282,3 +282,28 @@ body {
     transition: visibility 500ms ease 0s;
     /* will-change: transform; */
 }
+
+@keyframes bar {
+    0%,
+    100% {
+        height: 20%;
+    }
+    50% {
+        height: 60%;
+    }
+}
+
+@layer utilities {
+    .animate-bar1 {
+        animation: bar 0.85s ease-in-out infinite;
+        transform-origin: center;
+    }
+    .animate-bar2 {
+        animation: bar 1.26s ease-in-out infinite;
+        transform-origin: center;
+    }
+    .animate-bar3 {
+        animation: bar 0.62s ease-in-out infinite;
+        transform-origin: center;
+    }
+}
