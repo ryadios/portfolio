@@ -1,4 +1,6 @@
-import { TabKey } from "../App";
+"use client";
+
+import { TabKey } from "@/utils/tabs";
 import { useEffect, useRef } from "react";
 
 interface NavbarProps {

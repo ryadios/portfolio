@@ -1,6 +1,8 @@
+"use client";
+
 import { useEffect, useMemo, useState } from "react";
 import { Responsive, WidthProvider } from "react-grid-layout";
-import { TabKey } from "../App";
+import { TabKey } from "@/utils/tabs";
 import {
     AboutLayouts,
     HomeLayouts,

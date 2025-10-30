@@ -1,15 +1,11 @@
+"use client";
+
 import { useState } from "react";
-import Layout from "@/components/layout";
-import Navbar from "@/components/navbar";
+import Navbar from "./navbar";
+import { TabKey } from "@/utils/tabs";
+import Layout from "./layout";
 
-export enum TabKey {
-    Home = "Home",
-    Projects = "Projects",
-    Media = "Media",
-    About = "About",
-}
-
-function App() {
+export function Main() {
     const [tab, setTab] = useState<TabKey>(TabKey.Home);
     const [x, setX] = useState(0);
     const [w, setW] = useState(0);
@@ -28,5 +24,3 @@ function App() {
         </main>
     );
 }
-
-export default App;

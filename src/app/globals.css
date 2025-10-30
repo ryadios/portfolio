@@ -1,65 +1,9 @@
 @import "tailwindcss";
 @import "tw-animate-css";
-@import "../node_modules/react-grid-layout/css/styles.css";
-@import "../node_modules/react-resizable/css/styles.css";
+@import "../../node_modules/react-grid-layout/css/styles.css";
+@import "../../node_modules/react-resizable/css/styles.css";
 
 @custom-variant dark (&:is(.dark *));
-
-@font-face {
-    font-family: "Silka";
-    src: url("/fonts/Silka/Silka-Regular.otf") format("opentype");
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: "Silka";
-    src: url("/fonts/Silka/Silka-Bold.otf") format("opentype");
-    font-weight: 800;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: "Silka";
-    src: url("/fonts/Silka/Silka-Medium.otf") format("opentype");
-    font-weight: 500;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: "Moranga";
-    src: url("/fonts/Moranga/Moranga-Light.otf") format("opentype");
-    font-weight: 300;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: "Moranga";
-    src: url("/fonts/Moranga/Moranga-Regular.otf") format("opentype");
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: "Moranga";
-    src: url("/fonts/Moranga/Moranga-Medium.otf") format("opentype");
-    font-weight: 500;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: "Moranga";
-    src: url("/fonts/Moranga/Moranga-Bold.otf") format("opentype");
-    font-weight: 700;
-    font-style: normal;
-    font-display: swap;
-}
 
 :root {
     --background: oklch(1 0 0);
@@ -242,15 +186,6 @@
 
 body {
     letter-spacing: var(--tracking-normal);
-    font-family: var(--font-silka);
-}
-
-.font-moranga {
-    font-family: "Moranga";
-}
-
-.spotify-text {
-    color: rgb(110, 210, 183);
 }
 
 @layer base {
@@ -306,4 +241,12 @@ body {
         animation: bar 0.62s ease-in-out infinite;
         transform-origin: center;
     }
+}
+
+.font-moranga {
+    font-family: "Moranga";
+}
+
+.spotify-text {
+    color: rgb(110, 210, 183);
 }
