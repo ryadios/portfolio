@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Responsive, WidthProvider } from "react-grid-layout";
 import { TabKey } from "@/utils/tabs";
 import {
@@ -58,15 +58,6 @@ function Layout({ tab, song }: LayoutProps) {
     const [currentlayout, setCurrentLayout] = useState(HomeLayouts);
     const [breakpoint, setBreakpoint] =
         useState<keyof typeof currentlayout>("lg");
-    const [classNames, setClassNames] = useState("m-auto w-[1200px] gap-12");
-
-    useEffect(() => {
-        const timer = setTimeout(
-            () => setClassNames("m-auto w-[1200px] gap-12 animated"),
-            1
-        );
-        return () => clearTimeout(timer);
-    }, []);
 
     useEffect(() => {
         switch (tab) {
@@ -107,7 +98,7 @@ function Layout({ tab, song }: LayoutProps) {
                     }}
                 >
                     <ResponsiveReactGridLayout
-                        className={classNames}
+                        className="m-auto w-[1200px] gap-12"
                         breakpoints={{
                             xl: 1200,
                             lg: 899,
@@ -123,7 +114,6 @@ function Layout({ tab, song }: LayoutProps) {
                             setBreakpoint(bp === "xs" ? "xs" : "lg")
                         }
                         draggableCancel=".no-drag"
-                        // useCSSTransforms={false}
                     >
                         {keys.map((key) => {
                             const layoutItem = activeLayout.find(

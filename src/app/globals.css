@@ -212,9 +212,8 @@ body {
 }
 
 .react-grid-item {
-    /* transition: transform 500ms ease 0s !important; */
     transition: visibility 500ms ease 0s;
-    /* will-change: transform; */
+    will-change: transform;
 }
 
 @keyframes bar {
