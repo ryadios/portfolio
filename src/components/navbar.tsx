@@ -2,6 +2,7 @@
 
 import { TabKey } from "@/utils/tabs";
 import { useEffect, useRef } from "react";
+import { motion } from "framer-motion";
 
 interface NavbarProps {
     tab: TabKey;
@@ -59,9 +60,13 @@ const Navbar = ({
     }, [tab, setW, setX]);
     return (
         <nav className="w-full flex items-center justify-between py-10 px-16 text-sm font-medium">
-            <div>
+            <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, ease: "easeOut" }}
+            >
                 <p className="text-xl font-bold">ryadi</p>
-            </div>
+            </motion.div>
             <div className="relative flex items-center justify-between gap-2 bg-[#EDE9E9] rounded-xl p-1">
                 {tabs.map(({ key, label }) => (
                     <div

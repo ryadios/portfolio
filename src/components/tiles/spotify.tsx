@@ -1,27 +1,41 @@
+import Image from "next/image";
 import { CardContent } from "../ui/card";
+import { moranga } from "@/app/fonts";
 
-export function Spotify() {
+type SongData = {
+    status: string;
+    song: string;
+    artist: string;
+};
+
+export function Spotify({ song }: { song: SongData }) {
     return (
-        <>
-            <CardContent className="px-8 py-9 flex flex-col items-start justify-between h-full">
-                <img src="/icons/spotify.svg" alt="Icon" className="size-13" />
-                <div className="flex gap-2 flex-col">
-                    <div className="flex items-center spotify-text">
-                        <div className="h-5 mr-2 relative flex items-center justify-center">
-                            <div className="w-[3px] h-[3px] mr-[3px] bg-[rgb(110,210,183)] rounded-[1.5px] animate-bar1"></div>
-                            <div className="w-[3px] h-[3px] mr-[3px] bg-[rgb(110,210,183)] rounded-[1.5px] animate-bar2"></div>
-                            <div className="w-[3px] h-[3px] bg-[rgb(110,210,183)] rounded-[1.5px] animate-bar3"></div>
-                        </div>
-                        <p className="font-medium">Offline. Last Played</p>
+        <CardContent className="px-8 py-10 flex flex-col items-start justify-between h-[280px]">
+            <Image
+                src="/icons/spotify.svg"
+                alt="Spotify Icon"
+                width={52}
+                height={52}
+            />
+            <div className="flex gap-1 flex-col">
+                <div className="flex items-center spotify-text">
+                    <div className="h-5 mr-2 relative flex items-center justify-center">
+                        <div className="w-[3px] h-[3px] mr-[3px] rounded-[1.5px] bg-[rgb(110,210,183)] animate-bar1"></div>
+                        <div className="w-[3px] h-[3px] mr-[3px] rounded-[1.5px] bg-[rgb(110,210,183)] animate-bar2"></div>
+                        <div className="w-[3px] h-[3px] mr-[3px] rounded-[1.5px] bg-[rgb(110,210,183)] animate-bar3"></div>
                     </div>
-                    <div>
-                        <h2 className="w-full font-moranga font-bold text-2xl whitespace-nowrap overflow-hidden text-ellipsis leading-[26px] hover:opacity-50 cursor-pointer transition-opacity duration-500">
-                            Avid
-                        </h2>
-                        <p>Sawano Hiroyuki</p>
-                    </div>
+                    <p className="font-medium">{song.status}</p>
                 </div>
-            </CardContent>
-        </>
+                <div>
+                    <h2
+                        className={`${moranga.className} w-full max-w-[220px] font-bold text-2xl truncate leading-[26px] hover:opacity-50 cursor-pointer transition-opacity duration-500`}
+                    >
+                        {song.song}
+                    </h2>
+
+                    <p>{song.artist}</p>
+                </div>
+            </div>
+        </CardContent>
     );
 }

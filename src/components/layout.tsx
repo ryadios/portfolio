@@ -22,31 +22,51 @@ import { History } from "./tiles/history";
 import { Project2 } from "./tiles/project2";
 import { Project3 } from "./tiles/project3";
 import { Subscribe } from "./tiles/subscribe";
+import { motion, AnimatePresence } from "framer-motion";
+
+type SongData = {
+    status: string;
+    song: string;
+    artist: string;
+};
 
 interface LayoutProps {
     tab: TabKey;
     setTab: React.Dispatch<React.SetStateAction<TabKey>>;
     left?: number;
     sliderWidth?: number;
+    song: SongData;
 }
 
-const componentMap: Record<string, React.ReactNode> = {
-    a: <AboutMe />,
-    b: <Map />,
-    c: <Project1 />,
-    d: <Spotify />,
-    e: <Twitter />,
-    f: <DarkMode />,
-    g: <History />,
-    h: <Project2 />,
-    i: <Project3 />,
-    j: <Subscribe />,
+const componentMap: Record<
+    string,
+    (props: { song: SongData }) => React.ReactNode
+> = {
+    a: () => <AboutMe />,
+    b: () => <Map />,
+    c: () => <Project1 />,
+    d: ({ song }) => <Spotify song={song} />,
+    e: () => <Twitter />,
+    f: () => <DarkMode />,
+    g: () => <History />,
+    h: () => <Project2 />,
+    i: () => <Project3 />,
+    j: () => <Subscribe />,
 };
 
-function Layout({ tab }: LayoutProps) {
+function Layout({ tab, song }: LayoutProps) {
     const [currentlayout, setCurrentLayout] = useState(HomeLayouts);
     const [breakpoint, setBreakpoint] =
         useState<keyof typeof currentlayout>("lg");
+    const [classNames, setClassNames] = useState("m-auto w-[1200px] gap-12");
+
+    useEffect(() => {
+        const timer = setTimeout(
+            () => setClassNames("m-auto w-[1200px] gap-12 animated"),
+            1
+        );
+        return () => clearTimeout(timer);
+    }, []);
 
     useEffect(() => {
         switch (tab) {
@@ -74,38 +94,58 @@ function Layout({ tab }: LayoutProps) {
     const activeLayout = currentlayout[breakpoint] || currentlayout.lg;
 
     return (
-        <div className="w-screen m-auto flex justify-between">
-            <ResponsiveReactGridLayout
-                className="m-auto w-[1200px] gap-12"
-                breakpoints={{ xl: 1200, lg: 899, md: 768, sm: 480, xs: 200 }}
-                cols={{ xl: 4, lg: 4, md: 2, sm: 1, xs: 1 }}
-                rowHeight={280}
-                layouts={currentlayout}
-                isResizable={false}
-                onBreakpointChange={(bp) =>
-                    setBreakpoint(bp === "xs" ? "xs" : "lg")
-                }
-                draggableCancel=".no-drag"
-            >
-                {keys.map((key) => {
-                    const layoutItem = activeLayout.find(
-                        (item) => item.i === key
-                    );
-                    const disabled = layoutItem?.disabled ?? false;
-                    return (
-                        <Card
-                            key={key}
-                            className={cn(
-                                "visible cursor-grab active:cursor-grabbing [box-shadow:inset_0_0_0_2px_transparent] p-0",
-                                disabled && "opacity-40"
-                            )}
-                        >
-                            {componentMap[key]}
-                        </Card>
-                    );
-                })}
-            </ResponsiveReactGridLayout>
-        </div>
+        <AnimatePresence>
+            {song && (
+                <motion.div
+                    className="w-screen m-auto flex justify-between"
+                    key="grid"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{
+                        duration: 0.5,
+                        ease: "easeOut",
+                    }}
+                >
+                    <ResponsiveReactGridLayout
+                        className={classNames}
+                        breakpoints={{
+                            xl: 1200,
+                            lg: 899,
+                            md: 768,
+                            sm: 480,
+                            xs: 200,
+                        }}
+                        cols={{ xl: 4, lg: 4, md: 2, sm: 1, xs: 1 }}
+                        rowHeight={280}
+                        layouts={currentlayout}
+                        isResizable={false}
+                        onBreakpointChange={(bp) =>
+                            setBreakpoint(bp === "xs" ? "xs" : "lg")
+                        }
+                        draggableCancel=".no-drag"
+                        // useCSSTransforms={false}
+                    >
+                        {keys.map((key) => {
+                            const layoutItem = activeLayout.find(
+                                (item) => item.i === key
+                            );
+                            const disabled = layoutItem?.disabled ?? false;
+                            return (
+                                <Card
+                                    key={key}
+                                    className={cn(
+                                        "visible cursor-grab active:cursor-grabbing [box-shadow:inset_0_0_0_2px_transparent] p-0",
+                                        disabled && "opacity-40"
+                                    )}
+                                >
+                                    <div>{componentMap[key]({ song })}</div>
+                                </Card>
+                            );
+                        })}
+                    </ResponsiveReactGridLayout>
+                </motion.div>
+            )}
+        </AnimatePresence>
     );
 }
 
