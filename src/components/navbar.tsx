@@ -58,6 +58,7 @@ const Navbar = ({
             window.removeEventListener("resize", calculateSliderPosition);
         };
     }, [tab, setW, setX]);
+
     return (
         <nav className="w-full flex items-center justify-between py-10 px-16 text-sm font-medium">
             <motion.div
@@ -67,17 +68,17 @@ const Navbar = ({
             >
                 <p className="text-xl font-bold">ryadi</p>
             </motion.div>
-            <div className="relative flex items-center justify-between gap-2 bg-[#EDE9E9] rounded-xl p-1">
+            <div className="relative flex items-center justify-between bg-[#EDE9E9] rounded-[23px] p-[5px]">
                 {tabs.map(({ key, label }) => (
                     <div
                         key={key}
                         ref={(el) => {
                             tabRefs.current[key] = el;
                         }}
-                        className={`tab flex items-center h-9 flex-1 cursor-pointer justify-center z-20 px-4 py-1.5 ${
+                        className={`tab flex items-center h-9 flex-1 cursor-pointer justify-center z-20 px-4 rounded-[50px] ${
                             tab === key
                                 ? "text-black"
-                                : "text-black-300 hover:opacity-50 transition-opacity duration-[0.25s]"
+                                : "text-black-300 hover:opacity-50 transition-opacity duration-300"
                         }`}
                         onClick={() => setTab(key)}
                     >
@@ -85,7 +86,7 @@ const Navbar = ({
                     </div>
                 ))}
                 <div
-                    className="absolute bg-background/80 rounded-xl z-10 p-1 h-9 ease-out"
+                    className="absolute bg-background/80 rounded-xl z-10 p-1 h-8 ease-out"
                     style={{
                         left: `${left}px`,
                         width: `${sliderWidth}px`,
