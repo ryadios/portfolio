@@ -3,6 +3,7 @@
 import { TabKey } from "@/utils/tabs";
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 interface NavbarProps {
     tab: TabKey;
@@ -22,7 +23,7 @@ const Navbar = ({
     setW,
 }: NavbarProps) => {
     const tabs = [
-        { key: TabKey.Home, label: "Home" },
+        { key: TabKey.Home, label: "All" },
         { key: TabKey.About, label: "About" },
         { key: TabKey.Projects, label: "Projects" },
         { key: TabKey.Media, label: "Media" },
@@ -60,25 +61,24 @@ const Navbar = ({
     }, [tab, setW, setX]);
 
     return (
-        <nav className="w-full flex items-center justify-between py-10 px-16 text-sm font-medium">
-            <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, ease: "easeOut" }}
-            >
-                <p className="text-xl font-bold">ryadi</p>
-            </motion.div>
-            <div className="relative flex items-center justify-between bg-[#EDE9E9] rounded-[23px] p-[5px]">
+        <nav className="responsive-nav font-medium text-[14px]">
+            <Image
+                src="/images/ryadi.png"
+                alt="ryadi"
+                width={102}
+                height={24}
+            />
+            <div className="relative flex items-center justify-between bg-[rgba(0,0,0,0.04)] rounded-[23px] p-[5px]">
                 {tabs.map(({ key, label }) => (
                     <div
                         key={key}
                         ref={(el) => {
                             tabRefs.current[key] = el;
                         }}
-                        className={`tab flex items-center h-9 flex-1 cursor-pointer justify-center z-20 px-4 rounded-[50px] ${
+                        className={`tab flex items-center h-8 px-4 rounded-[50px] transition-opacity duration-300 z-10 ${
                             tab === key
                                 ? "text-black"
-                                : "text-black-300 hover:opacity-50 transition-opacity duration-300"
+                                : "text-black-300 hover:opacity-50 cursor-pointer"
                         }`}
                         onClick={() => setTab(key)}
                     >
@@ -86,7 +86,7 @@ const Navbar = ({
                     </div>
                 ))}
                 <div
-                    className="absolute bg-background/80 rounded-xl z-10 p-1 h-8 ease-out"
+                    className="absolute bg-white rounded-xl h-8"
                     style={{
                         left: `${left}px`,
                         width: `${sliderWidth}px`,
@@ -94,9 +94,9 @@ const Navbar = ({
                     }}
                 ></div>
             </div>
-            <div className="text-black hover:opacity-50 cursor-pointer transition-opacity duration-[0.25s]">
-                <a>Contact</a>
-            </div>
+            <a className="text-black hover:opacity-50 cursor-pointer transition-opacity duration-200">
+                <p>Contact</p>
+            </a>
         </nav>
     );
 };

@@ -61,7 +61,7 @@
     --shadow-xl: 0px 8px 12px 0px hsl(210 20% 96% / 0.4),
         0px 8px 10px -1px hsl(210 20% 96% / 0.4);
     --shadow-2xl: 0px 8px 12px 0px hsl(210 20% 96% / 1);
-    --tracking-normal: 0.5px;
+    --tracking-normal: 0.25px;
     --spacing: 0.25rem;
 }
 
@@ -255,20 +255,42 @@ body {
     max-width: 1200px;
 }
 
-@media (max-width: 1200px) and (min-width: 801px) {
+@media (max-width: 1200px) {
     .responsive {
         max-width: 800px;
     }
 }
 
-@media (max-width: 800px) and (min-width: 376px) {
+@media (max-width: 799px) {
     .responsive {
         max-width: 375px;
     }
 }
 
-@media (max-width: 375px) {
+@media (max-width: 374px) {
     .responsive {
-        max-width: 340px;
+        max-width: 320px;
+    }
+}
+
+.responsive-nav {
+    width: 100%;
+    height: 136px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 3.5vw;
+}
+
+@media (max-width: 600px) {
+    .responsive-nav {
+        flex-direction: column;
+        justify-content: center;
+        height: 180px;
+    }
+
+    .responsive-nav img {
+        margin-bottom: 24px;
+        margin-top: 36px;
     }
 }

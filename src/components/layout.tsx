@@ -97,7 +97,7 @@ function Layout({ tab, song }: LayoutProps) {
         <AnimatePresence>
             {song && (
                 <motion.div
-                    className="w-screen flex justify-center p-0"
+                    className="w-screen p-0"
                     key="grid"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -113,10 +113,10 @@ function Layout({ tab, song }: LayoutProps) {
                                 xl: 1200,
                                 lg: 800,
                                 md: 375,
-                                sm: 340,
+                                sm: 324,
                                 xs: 0,
                             }}
-                            cols={{ xl: 4, lg: 4, md: 4, sm: 2, xs: 1 }}
+                            cols={{ xl: 4, lg: 4, md: 4, sm: 2, xs: 2 }}
                             margin={[16, 16]}
                             rowHeight={rowHeight}
                             layouts={currentlayout}
