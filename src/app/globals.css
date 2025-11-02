@@ -197,22 +197,23 @@ body {
 }
 
 .react-grid-item.react-grid-placeholder {
-    background: #d3cdcd none repeat scroll 0% 0%;
-    /* opacity: 0.07; */
-    transition-duration: 100ms;
+    background: rgb(237, 233, 233) none repeat scroll 0% 0% / auto padding-box
+        border-box;
+    opacity: 1;
+    transition-duration: 0.5s;
     z-index: 2;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     -o-user-select: none;
     user-select: none;
-    border-radius: var(--radius-xl);
-    transition: all 500ms ease 0s !important;
+    border-radius: 32px;
+    transition: 0.5s;
     will-change: transform;
 }
 
 .react-grid-item {
-    transition: visibility 500ms ease 0s;
+    transition: 500ms;
     will-change: transform;
 }
 
@@ -241,6 +242,33 @@ body {
     }
 }
 
+* {
+    box-sizing: border-box;
+}
+
 .spotify-text {
     color: rgb(110, 210, 183);
+}
+.responsive {
+    width: 100%;
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+@media (max-width: 1200px) and (min-width: 801px) {
+    .responsive {
+        max-width: 800px;
+    }
+}
+
+@media (max-width: 800px) and (min-width: 376px) {
+    .responsive {
+        max-width: 375px;
+    }
+}
+
+@media (max-width: 375px) {
+    .responsive {
+        max-width: 340px;
+    }
 }

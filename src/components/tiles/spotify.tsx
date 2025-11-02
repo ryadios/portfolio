@@ -10,32 +10,35 @@ type SongData = {
 
 export function Spotify({ song }: { song: SongData }) {
     return (
-        <CardContent className="px-8 py-10 flex flex-col items-start justify-between h-[280px]">
+        <div
+            className="size-full flex flex-col justify-between px-10 py-9 lg:px-8 lg:py-7 xl:px-9.5 xl:py-8"
+            //
+        >
             <Image
                 src="/icons/spotify.svg"
                 alt="Spotify Icon"
-                width={52}
-                height={52}
+                width={72}
+                height={72}
+                className="xl:size-[54px] lg:size-9 size-[72px] object-contain"
             />
-            <div className="flex gap-1 flex-col">
-                <div className="flex items-center spotify-text">
-                    <div className="h-5 mr-2 relative flex items-center justify-center">
+            <div>
+                <div className="flex items-center spotify-text mb-0">
+                    <div className="h-5 mr-2 relative flex items-center">
                         <div className="w-[3px] h-[3px] mr-[3px] rounded-[1.5px] bg-[rgb(110,210,183)] animate-bar1"></div>
                         <div className="w-[3px] h-[3px] mr-[3px] rounded-[1.5px] bg-[rgb(110,210,183)] animate-bar2"></div>
                         <div className="w-[3px] h-[3px] mr-[3px] rounded-[1.5px] bg-[rgb(110,210,183)] animate-bar3"></div>
                     </div>
-                    <p className="font-medium">{song.status}</p>
+                    <p className="font-medium lg:text-sm">{song.status}</p>
                 </div>
-                <div>
-                    <h2
-                        className={`${moranga.className} w-full max-w-[220px] font-bold text-2xl truncate leading-[26px] hover:opacity-50 cursor-pointer transition-opacity duration-500`}
-                    >
-                        {song.song}
-                    </h2>
+                <h2
+                    // className={`${moranga.className} w-full max-w-[220px] font-bold text-2xl truncate leading-[26px] hover:opacity-50 cursor-pointer transition-opacity duration-500`}
+                    className={`${moranga.className} whitespace-nowrap overflow-hidden text-ellipsis w-full text-2xl leading-[32px] font-bold truncate`}
+                >
+                    {song.song}
+                </h2>
 
-                    <p>{song.artist}</p>
-                </div>
+                <p className="text-sm">{song.artist}</p>
             </div>
-        </CardContent>
+        </div>
     );
 }

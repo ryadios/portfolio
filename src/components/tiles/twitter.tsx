@@ -7,10 +7,10 @@ export function Twitter() {
             <CardContent className="size-full flex items-center justify-center bg-[rgb(152,208,255)]">
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    width="75.121"
-                    height="61.052"
+                    width="52.58"
+                    height="42.73"
                     viewBox="0 0 75.121 61.052"
-                    className="fill-white"
+                    className="fill-white lg:size-12 xl:size-18"
                 >
                     <path
                         id="icons8-twitter"

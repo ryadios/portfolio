@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Responsive, WidthProvider } from "react-grid-layout";
 import { TabKey } from "@/utils/tabs";
 import {
@@ -54,10 +54,18 @@ const componentMap: Record<
     j: () => <Subscribe />,
 };
 
+const rowHeights = {
+    lg: 280,
+    md: 180,
+    sm: 164,
+    xs: 136,
+};
+
+type Breakpoint = keyof typeof rowHeights;
+
 function Layout({ tab, song }: LayoutProps) {
     const [currentlayout, setCurrentLayout] = useState(HomeLayouts);
-    const [breakpoint, setBreakpoint] =
-        useState<keyof typeof currentlayout>("lg");
+    const [breakpoint, setBreakpoint] = useState<Breakpoint>("lg");
 
     useEffect(() => {
         switch (tab) {
@@ -83,12 +91,13 @@ function Layout({ tab, song }: LayoutProps) {
         []
     );
     const activeLayout = currentlayout[breakpoint] || currentlayout.lg;
+    const rowHeight = rowHeights[breakpoint] || 180;
 
     return (
         <AnimatePresence>
             {song && (
                 <motion.div
-                    className="w-screen m-auto flex justify-between"
+                    className="w-screen flex justify-center p-0"
                     key="grid"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -97,42 +106,46 @@ function Layout({ tab, song }: LayoutProps) {
                         ease: "easeOut",
                     }}
                 >
-                    <ResponsiveReactGridLayout
-                        className="m-auto w-[1200px] gap-12"
-                        breakpoints={{
-                            xl: 1200,
-                            lg: 899,
-                            md: 768,
-                            sm: 480,
-                            xs: 200,
-                        }}
-                        cols={{ xl: 4, lg: 4, md: 2, sm: 1, xs: 1 }}
-                        rowHeight={280}
-                        layouts={currentlayout}
-                        isResizable={false}
-                        onBreakpointChange={(bp) =>
-                            setBreakpoint(bp === "xs" ? "xs" : "lg")
-                        }
-                        draggableCancel=".no-drag"
-                    >
-                        {keys.map((key) => {
-                            const layoutItem = activeLayout.find(
-                                (item) => item.i === key
-                            );
-                            const disabled = layoutItem?.disabled ?? false;
-                            return (
-                                <Card
-                                    key={key}
-                                    className={cn(
-                                        "visible cursor-grab active:cursor-grabbing [box-shadow:inset_0_0_0_2px_transparent] p-0",
-                                        disabled && "opacity-40"
-                                    )}
-                                >
-                                    <div>{componentMap[key]({ song })}</div>
-                                </Card>
-                            );
-                        })}
-                    </ResponsiveReactGridLayout>
+                    <div className="w-full responsive">
+                        <ResponsiveReactGridLayout
+                            className="w-full"
+                            breakpoints={{
+                                xl: 1200,
+                                lg: 800,
+                                md: 375,
+                                sm: 340,
+                                xs: 0,
+                            }}
+                            cols={{ xl: 4, lg: 4, md: 4, sm: 2, xs: 1 }}
+                            margin={[16, 16]}
+                            rowHeight={rowHeight}
+                            layouts={currentlayout}
+                            onBreakpointChange={(bp) =>
+                                setBreakpoint(bp as Breakpoint)
+                            }
+                            isResizable={false}
+                            draggableCancel=".no-drag"
+                            useCSSTransforms={false}
+                        >
+                            {keys.map((key) => {
+                                const layoutItem = activeLayout.find(
+                                    (item) => item.i === key
+                                );
+                                const disabled = layoutItem?.disabled ?? false;
+                                return (
+                                    <div
+                                        key={key}
+                                        className={cn(
+                                            "rounded-xl bg-white visible cursor-grab active:cursor-grabbing [box-shadow:inset_0_0_0_2px_transparent] overflow-hidden",
+                                            disabled && "opacity-40"
+                                        )}
+                                    >
+                                        {componentMap[key]({ song })}
+                                    </div>
+                                );
+                            })}
+                        </ResponsiveReactGridLayout>
+                    </div>
                 </motion.div>
             )}
         </AnimatePresence>
