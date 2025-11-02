@@ -1,15 +1,8 @@
+import type { Layouts } from "react-grid-layout";
+
 export const keys = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"];
 
-interface Item {
-    i: (typeof keys)[number];
-    x: number;
-    y: number;
-    w: number;
-    h: number;
-    disabled?: boolean;
-}
-
-export const HomeLayouts: { lg: Item[]; xs: Item[] } = {
+export const HomeLayouts: Layouts = {
     lg: [
         { i: "a", x: 0, y: 0, w: 2, h: 1 },
         { i: "b", x: 2, y: 0, w: 1, h: 1 },
@@ -22,7 +15,19 @@ export const HomeLayouts: { lg: Item[]; xs: Item[] } = {
         { i: "i", x: 0, y: 3, w: 2, h: 1 },
         { i: "j", x: 3, y: 3, w: 2, h: 1 },
     ],
-    xs: [
+    md: [
+        { i: "a", x: 0, y: 0, w: 2, h: 2 },
+        { i: "b", x: 2, y: 0, w: 1, h: 1 },
+        { i: "c", x: 3, y: 0, w: 1, h: 2 },
+        { i: "d", x: 0, y: 2, w: 2, h: 1 },
+        { i: "e", x: 1, y: 5, w: 1, h: 1 },
+        { i: "f", x: 3, y: 2, w: 1, h: 1 },
+        { i: "g", x: 0, y: 3, w: 2, h: 2 },
+        { i: "h", x: 2, y: 1, w: 1, h: 2 },
+        { i: "i", x: 2, y: 3, w: 2, h: 1 },
+        { i: "j", x: 3, y: 3, w: 2, h: 2 },
+    ],
+    sm: [
         { i: "a", x: 0, y: 0, w: 2, h: 1 },
         { i: "b", x: 0, y: 1, w: 1, h: 1 },
         { i: "c", x: 0, y: 7, w: 1, h: 1 },
@@ -36,7 +41,7 @@ export const HomeLayouts: { lg: Item[]; xs: Item[] } = {
     ],
 };
 
-export const AboutLayouts = {
+export const AboutLayouts: Layouts = {
     lg: [
         { i: "a", x: 0, y: 0, w: 2, h: 1 },
         { i: "b", x: 2, y: 0, w: 1, h: 1 },
@@ -49,7 +54,19 @@ export const AboutLayouts = {
         { i: "i", x: 0, y: 3, w: 2, h: 1, disabled: true },
         { i: "j", x: 3, y: 4, w: 2, h: 1, disabled: true },
     ],
-    xs: [
+    md: [
+        { i: "a", x: 0, y: 0, w: 2, h: 2 },
+        { i: "b", x: 2, y: 0, w: 1, h: 1 },
+        { i: "c", x: 3, y: 1, w: 1, h: 2, disabled: true },
+        { i: "d", x: 0, y: 2, w: 2, h: 1, disabled: true },
+        { i: "e", x: 3, y: 0, w: 1, h: 1 },
+        { i: "f", x: 1, y: 5, w: 1, h: 1, disabled: true },
+        { i: "g", x: 0, y: 3, w: 2, h: 2, disabled: true },
+        { i: "h", x: 2, y: 1, w: 1, h: 2, disabled: true },
+        { i: "i", x: 2, y: 3, w: 2, h: 1, disabled: true },
+        { i: "j", x: 3, y: 3, w: 2, h: 2, disabled: true },
+    ],
+    sm: [
         { i: "b", x: 0, y: 0, w: 2, h: 1 },
         { i: "i", x: 2, y: 0, w: 1, h: 1 },
         { i: "g", x: 0, y: 5, w: 1, h: 1 },
@@ -62,7 +79,7 @@ export const AboutLayouts = {
     ],
 };
 
-export const ProjectLayouts = {
+export const ProjectLayouts: Layouts = {
     lg: [
         { i: "a", x: 0, y: 1, w: 2, h: 1, disabled: true },
         { i: "b", x: 2, y: 1, w: 1, h: 1, disabled: true },
@@ -75,7 +92,19 @@ export const ProjectLayouts = {
         { i: "i", x: 0, y: 0, w: 2, h: 1 },
         { i: "j", x: 3, y: 4, w: 2, h: 1, disabled: true },
     ],
-    xs: [
+    md: [
+        { i: "a", x: 0, y: 1, w: 2, h: 2, disabled: true },
+        { i: "b", x: 2, y: 2, w: 1, h: 1, disabled: true },
+        { i: "c", x: 3, y: 0, w: 1, h: 2 },
+        { i: "d", x: 0, y: 3, w: 2, h: 1, disabled: true },
+        { i: "e", x: 3, y: 2, w: 1, h: 1, disabled: true },
+        { i: "f", x: 2, y: 5, w: 1, h: 1, disabled: true },
+        { i: "g", x: 0, y: 1, w: 2, h: 2, disabled: true },
+        { i: "h", x: 2, y: 0, w: 1, h: 2 },
+        { i: "i", x: 0, y: 0, w: 2, h: 1 },
+        { i: "j", x: 3, y: 3, w: 2, h: 2, disabled: true },
+    ],
+    sm: [
         { i: "l", x: 0, y: 0, w: 2, h: 1 },
         { i: "i", x: 2, y: 0, w: 1, h: 1 },
         { i: "g", x: 0, y: 0, w: 1, h: 1 },
@@ -93,7 +122,7 @@ export const ProjectLayouts = {
     ],
 };
 
-export const MediaLayouts = {
+export const MediaLayouts: Layouts = {
     lg: [
         { i: "a", x: 0, y: 3, w: 2, h: 1, disabled: true },
         { i: "b", x: 1, y: 1, w: 1, h: 1, disabled: true },
@@ -106,7 +135,19 @@ export const MediaLayouts = {
         { i: "i", x: 0, y: 2, w: 2, h: 1, disabled: true },
         { i: "j", x: 3, y: 0, w: 2, h: 1 },
     ],
-    xs: [
+    md: [
+        { i: "a", x: 0, y: 3, w: 2, h: 2, disabled: true },
+        { i: "b", x: 2, y: 2, w: 1, h: 1, disabled: true },
+        { i: "c", x: 3, y: 0, w: 1, h: 2, disabled: true },
+        { i: "d", x: 0, y: 0, w: 2, h: 1 },
+        { i: "e", x: 1, y: 5, w: 1, h: 1, disabled: true },
+        { i: "f", x: 3, y: 2, w: 1, h: 1, disabled: true },
+        { i: "g", x: 0, y: 1, w: 2, h: 2 },
+        { i: "h", x: 2, y: 1, w: 1, h: 2, disabled: true },
+        { i: "i", x: 2, y: 3, w: 2, h: 1, disabled: true },
+        { i: "j", x: 2, y: 0, w: 2, h: 2 },
+    ],
+    sm: [
         { i: "k", x: 1, y: 1, w: 2, h: 1 },
         { i: "i", x: 2, y: 2, w: 1, h: 1 },
         { i: "g", x: 0, y: 0, w: 1, h: 1 },
