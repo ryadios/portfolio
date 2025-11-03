@@ -196,12 +196,17 @@ body {
     }
 }
 
+.react-grid-item {
+    transition: 500ms;
+    will-change: transform;
+}
+
 .react-grid-item.react-grid-placeholder {
     background: rgb(237, 233, 233) none repeat scroll 0% 0% / auto padding-box
         border-box;
     opacity: 1;
     transition-duration: 0.5s;
-    z-index: 2;
+    z-index: 1;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -211,11 +216,6 @@ body {
     transition: 0.5s;
     will-change: transform;
 }
-
-/* .react-grid-item {
-    transition: 500ms;
-    will-change: transform;
-} */
 
 @keyframes bar {
     0%,

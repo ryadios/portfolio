@@ -12,7 +12,7 @@ import {
 } from "@/utils/layout.helper";
 import { AboutMe } from "./tiles/about-me";
 import { cn } from "@/lib/utils";
-import { MapComponent } from "./tiles/map";
+import { Map } from "./tiles/map";
 import { Project1 } from "./tiles/project1";
 import { Spotify } from "./tiles/spotify";
 import { Twitter } from "./tiles/twitter";
@@ -43,7 +43,7 @@ const componentMap: Record<
     (props: { song: SongData }) => React.ReactNode
 > = {
     a: () => <AboutMe />,
-    b: () => <MapComponent />,
+    b: () => <Map />,
     c: () => <Project1 />,
     d: ({ song }) => <Spotify song={song} />,
     e: () => <Twitter />,
@@ -136,7 +136,7 @@ function Layout({ tab, song }: LayoutProps) {
                                     <Card
                                         key={key}
                                         className={cn(
-                                            "rounded-xl p-0 bg-white visible cursor-grab active:cursor-grabbing [box-shadow:inset_0_0_0_2px_transparent] overflow-hidden",
+                                            "rounded-xl p-0 bg-white visible cursor-grab active:cursor-grabbing overflow-hidden hover:shadow-[0_5px_24px_0_rgba(100,100,111,0.1)] group",
                                             disabled && "opacity-40"
                                         )}
                                     >

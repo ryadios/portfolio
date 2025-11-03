@@ -1,27 +1,27 @@
 "use client";
 
-import { Map, useMap } from "@vis.gl/react-maplibre";
+import { Map as MapLibre, useMap } from "@vis.gl/react-maplibre";
 import { MinusIcon, PlusIcon } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import "maplibre-gl/dist/maplibre-gl.css";
+import Image from "next/image";
 
 const zoomMap: Record<number, number> = {
-    1: 6,
-    2: 9,
-    3: 13,
+    1: 9,
+    2: 13,
 };
 
 function MapControls() {
     const { current: map } = useMap();
-    const [zoomLevel, setZoomLevel] = useState(3);
+    const [zoomLevel, setZoomLevel] = useState(2);
 
     useEffect(() => {
         if (map) map.flyTo({ zoom: zoomMap[zoomLevel] });
     }, [zoomLevel, map]);
 
     const zoomIn = () => {
-        if (zoomLevel === 3) return;
+        if (zoomLevel === 2) return;
         setZoomLevel((prev) => prev + 1);
     };
 
@@ -51,7 +51,7 @@ function MapControls() {
                 </motion.button>
             )}
 
-            {zoomLevel !== 3 && (
+            {zoomLevel !== 2 && (
                 <motion.button
                     key="plus"
                     initial={{ scale: 0, opacity: 0 }}
@@ -73,19 +73,37 @@ function MapControls() {
     );
 }
 
-export function MapComponent() {
+export function Overlay() {
+    return (
+        <div className="size-[82px] shadow-[0_4px_12px_rgba(0,0,0,0.25)] lg:size-24 rounded-full absolute inset-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#98d0ff80] flex items-center justify-center pointer-events-none border-4 border-white group-hover:scale-110 transition-all duration-500">
+            <div className="relative">
+                <div>
+                    <div></div>
+                    <Image
+                        src="/images/cat.png"
+                        alt="User"
+                        width={50}
+                        height={50}
+                    />
+                </div>
+            </div>
+        </div>
+    );
+}
+
+export function Map() {
     const mapId = process.env.NEXT_PUBLIC_MAPTILER_MAP_ID;
     const key = process.env.NEXT_PUBLIC_MAPTILER_KEY;
 
     return (
-        <div className="size-full flex items-center justify-center relative">
-            <Map
+        <div className="size-full flex items-center justify-center relative z-2">
+            <MapLibre
                 initialViewState={{
                     latitude: 26.84689,
-                    longitude: 80.97991,
+                    longitude: 80.985,
                     zoom: 13,
                 }}
-                style={{ width: 280, height: 280, borderRadius: "14px" }}
+                style={{ width: 343, height: 280, borderRadius: "14px" }}
                 mapStyle={`https://api.maptiler.com/maps/${mapId}/style.json?key=${key}`}
                 attributionControl={false}
                 dragPan={false}
@@ -95,7 +113,8 @@ export function MapComponent() {
                 keyboard={false}
             >
                 <MapControls />
-            </Map>
+            </MapLibre>
+            <Overlay />
         </div>
     );
 }
