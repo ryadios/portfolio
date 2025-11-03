@@ -10,7 +10,6 @@ import {
     ProjectLayouts,
     keys,
 } from "@/utils/layout.helper";
-import { Card } from "./ui/card";
 import { AboutMe } from "./tiles/about-me";
 import { cn } from "@/lib/utils";
 import { Map } from "./tiles/map";
@@ -23,6 +22,7 @@ import { Project2 } from "./tiles/project2";
 import { Project3 } from "./tiles/project3";
 import { Subscribe } from "./tiles/subscribe";
 import { motion, AnimatePresence } from "framer-motion";
+import { Card } from "./ui/card";
 
 type SongData = {
     status: string;
@@ -133,15 +133,15 @@ function Layout({ tab, song }: LayoutProps) {
                                 );
                                 const disabled = layoutItem?.disabled ?? false;
                                 return (
-                                    <div
+                                    <Card
                                         key={key}
                                         className={cn(
-                                            "rounded-xl bg-white visible cursor-grab active:cursor-grabbing [box-shadow:inset_0_0_0_2px_transparent] overflow-hidden",
+                                            "rounded-xl p-0 bg-white visible cursor-grab active:cursor-grabbing overflow-hidden hover:shadow-[0_5px_24px_0_rgba(100,100,111,0.1)] group",
                                             disabled && "opacity-40"
                                         )}
                                     >
                                         {componentMap[key]({ song })}
-                                    </div>
+                                    </Card>
                                 );
                             })}
                         </ResponsiveReactGridLayout>
