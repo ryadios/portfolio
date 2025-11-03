@@ -212,10 +212,10 @@ body {
     will-change: transform;
 }
 
-.react-grid-item {
+/* .react-grid-item {
     transition: 500ms;
     will-change: transform;
-}
+} */
 
 @keyframes bar {
     0%,
@@ -249,6 +249,7 @@ body {
 .spotify-text {
     color: rgb(110, 210, 183);
 }
+
 .responsive {
     width: 100%;
     margin: 0 auto;
@@ -293,4 +294,15 @@ body {
         margin-bottom: 24px;
         margin-top: 36px;
     }
+}
+
+.tooltip-btn {
+    transition: box-shadow 0.2s ease-out;
+}
+
+.tooltip-btn:hover {
+    cursor: pointer;
+    transition: box-shadow 0.2s ease-out;
+    box-shadow: rgb(255, 255, 255) 0px 0px 0px 1px,
+        rgba(255, 255, 255, 0.5) 0px 0px 0px 6px;
 }

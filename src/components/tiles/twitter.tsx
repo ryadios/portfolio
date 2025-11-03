@@ -18,7 +18,7 @@ export function Twitter() {
                         transform="translate(0.058 -5.614)"
                     ></path>
                 </svg>
-                <div className="bg-white rounded-full size-9 absolute bottom-3.5 left-3.5 flex items-center justify-center will-change-transform cursor-pointer hover:shadow-[0_0_0_1px_rgb(255,255,255),0_0_0_6px_rgba(255,255,255,0.5)] transition-shadow duration-200 ease-out">
+                <div className="bg-white rounded-full size-9 absolute bottom-3.5 left-3.5 flex items-center justify-center tooltip-btn">
                     <Image
                         src="/icons/arrow.svg"
                         alt="arrow"
