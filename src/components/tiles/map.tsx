@@ -73,20 +73,10 @@ function MapControls() {
     );
 }
 
-export function Overlay() {
+function Overlay() {
     return (
         <div className="size-[82px] shadow-[0_4px_12px_rgba(0,0,0,0.25)] lg:size-24 rounded-full absolute inset-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#98d0ff80] flex items-center justify-center pointer-events-none border-4 border-white group-hover:scale-110 transition-all duration-500">
-            <div className="relative">
-                <div>
-                    <div></div>
-                    <Image
-                        src="/images/cat.png"
-                        alt="User"
-                        width={50}
-                        height={50}
-                    />
-                </div>
-            </div>
+            <Image src="/images/cat.png" alt="User" width={50} height={50} />
         </div>
     );
 }
@@ -103,9 +93,9 @@ export function Map() {
                     longitude: 80.985,
                     zoom: 13,
                 }}
-                style={{ width: 343, height: 280, borderRadius: "14px" }}
+                style={{ width: "100%", height: "100%", borderRadius: "14px" }}
                 mapStyle={`https://api.maptiler.com/maps/${mapId}/style.json?key=${key}`}
-                attributionControl={false}
+                attributionControl={false} // TODO: add openstreetmap attribution in footer
                 dragPan={false}
                 scrollZoom={false}
                 doubleClickZoom={false}
