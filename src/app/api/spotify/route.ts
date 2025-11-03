@@ -8,6 +8,15 @@ const nowPlayingEndpoint =
 const recentlyPlayedEndpoint =
     "https://api.spotify.com/v1/me/player/recently-played?limit=1";
 
+interface SpotifyArtist {
+    name: string;
+}
+
+interface SpotifyTrack {
+    name: string;
+    artists: SpotifyArtist[];
+}
+
 let lastTrack = {
     status: "Offline. Last Played",
     song: "Avid",
@@ -49,26 +58,28 @@ export async function GET() {
                 cache: "no-store",
             });
             const recent = await recentRes.json();
-            const track = recent?.items?.[0]?.track;
+            const track: SpotifyTrack | undefined = recent?.items?.[0]?.track;
             if (track) {
                 lastTrack = {
                     status: "Offline. Last Played",
                     song: track.name,
-                    artist: track.artists.map((a: any) => a.name).join(", "),
+                    artist: track.artists
+                        .map((a: SpotifyArtist) => a.name)
+                        .join(", "),
                 };
             }
             return NextResponse.json(lastTrack);
         }
 
         const data = await res.json();
-        const track = data?.item;
+        const track: SpotifyTrack | undefined = data?.item;
 
         if (!track) return NextResponse.json(lastTrack);
 
         lastTrack = {
             status: "Currently Playing",
             song: track.name,
-            artist: track.artists.map((a: any) => a.name).join(", "),
+            artist: track.artists.map((a: SpotifyArtist) => a.name).join(", "),
         };
 
         return NextResponse.json(lastTrack);
