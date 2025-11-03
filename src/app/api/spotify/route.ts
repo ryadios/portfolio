@@ -1,6 +1,6 @@
-export const revalidate = 300; // Cache this API response for 5 minutes globally
-
 import { NextResponse } from "next/server";
+
+export const revalidate = 300; // cache for 5 minutes
 
 const tokenEndpoint = "https://accounts.spotify.com/api/token";
 const nowPlayingEndpoint =
@@ -8,9 +8,24 @@ const nowPlayingEndpoint =
 const recentlyPlayedEndpoint =
     "https://api.spotify.com/v1/me/player/recently-played?limit=1";
 
+interface SpotifyArtist {
+    name: string;
+}
+
+interface SpotifyTrack {
+    name: string;
+    artists: SpotifyArtist[];
+}
+
+let lastTrack = {
+    status: "Offline. Last Played",
+    song: "Avid",
+    artist: "SawanoHiroyuki[nZk], mizuki",
+};
+
 async function getAccessToken() {
     const refresh_token = process.env.SPOTIFY_REFRESH_TOKEN!;
-    const response = await fetch(tokenEndpoint, {
+    const res = await fetch(tokenEndpoint, {
         method: "POST",
         headers: {
             Authorization: `Basic ${Buffer.from(
@@ -22,72 +37,53 @@ async function getAccessToken() {
             grant_type: "refresh_token",
             refresh_token,
         }),
-        // Access token calls should not be cached
         cache: "no-store",
     });
-
-    const data = await response.json();
+    const data = await res.json();
+    if (!data.access_token) throw new Error("Failed to get access token");
     return data.access_token;
 }
 
 export async function GET() {
     try {
-        const access_token = await getAccessToken();
-
-        // Primary request
-        const nowPlayingRes = await fetch(nowPlayingEndpoint, {
-            headers: { Authorization: `Bearer ${access_token}` },
-            cache: "no-store", // Spotify endpoint must not be cached individually
+        const token = await getAccessToken();
+        const res = await fetch(nowPlayingEndpoint, {
+            headers: { Authorization: `Bearer ${token}` },
+            cache: "no-store",
         });
 
-        if (nowPlayingRes.status === 204 || nowPlayingRes.status >= 400) {
+        if (res.status === 204 || res.status >= 400) {
             const recentRes = await fetch(recentlyPlayedEndpoint, {
-                headers: { Authorization: `Bearer ${access_token}` },
+                headers: { Authorization: `Bearer ${token}` },
                 cache: "no-store",
             });
-            const recentData = await recentRes.json();
-            const track = recentData?.items?.[0]?.track;
-            return NextResponse.json({
-                status: "Offline. Last Played",
-                song: track?.name ?? "Unknown Track",
-                artist:
-                    track?.artists?.map((a: any) => a.name).join(", ") ??
-                    "Unknown Artist",
-            });
+            const recent = await recentRes.json();
+            const track: SpotifyTrack | undefined = recent?.items?.[0]?.track;
+            if (track) {
+                lastTrack = {
+                    status: "Offline. Last Played",
+                    song: track.name,
+                    artist: track.artists
+                        .map((a: SpotifyArtist) => a.name)
+                        .join(", "),
+                };
+            }
+            return NextResponse.json(lastTrack);
         }
 
-        const nowPlayingData = await nowPlayingRes.json();
-        const track = nowPlayingData?.item;
+        const data = await res.json();
+        const track: SpotifyTrack | undefined = data?.item;
 
-        if (!track) {
-            const recentRes = await fetch(recentlyPlayedEndpoint, {
-                headers: { Authorization: `Bearer ${access_token}` },
-                cache: "no-store",
-            });
-            const recentData = await recentRes.json();
-            const recentTrack = recentData?.items?.[0]?.track;
-            return NextResponse.json({
-                status: "Offline. Last Played",
-                song: recentTrack?.name ?? "Unknown Track",
-                artist:
-                    recentTrack?.artists?.map((a: any) => a.name).join(", ") ??
-                    "Unknown Artist",
-            });
-        }
+        if (!track) return NextResponse.json(lastTrack);
 
-        return NextResponse.json({
+        lastTrack = {
             status: "Currently Playing",
             song: track.name,
-            artist: track.artists.map((a: any) => a.name).join(", "),
-        });
+            artist: track.artists.map((a: SpotifyArtist) => a.name).join(", "),
+        };
+
+        return NextResponse.json(lastTrack);
     } catch {
-        return NextResponse.json(
-            {
-                status: "Offline. Last Played",
-                song: "Unknown Track",
-                artist: "Unknown Artist",
-            },
-            { status: 500 }
-        );
+        return NextResponse.json(lastTrack, { status: 500 });
     }
 }
