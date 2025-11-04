@@ -222,7 +222,10 @@
 
 /* React Grid Layout placeholder */
 .react-grid-item.react-grid-placeholder {
-    background: rgb(237, 233, 233);
+    background: rgb(237, 233, 233) none repeat scroll 0% 0% / auto padding-box
+        border-box;
+    opacity: 1;
+    user-select: none;
     border-radius: 32px;
     transition: 0.5s;
     user-select: none;

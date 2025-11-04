@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { CardContent } from "../ui/card";
+import { config } from "../../../config";
 
 export function Github() {
     return (
@@ -26,13 +27,15 @@ export function Github() {
                     height={48}
                     className="github-icon"
                 />
-                <div className="bg-white rounded-full size-9 absolute bottom-3.5 left-3.5 flex items-center justify-center tooltip-btn">
-                    <Image
-                        src="/icons/arrow.svg"
-                        alt="arrow"
-                        width={18}
-                        height={18}
-                    />
+                <div className="bg-white rounded-full size-9 absolute bottom-3.5 left-3.5 flex items-center justify-center tooltip-btn no-drag">
+                    <a href={config.github} target="_blank">
+                        <Image
+                            src="/icons/arrow.svg"
+                            alt="arrow"
+                            width={18}
+                            height={18}
+                        />
+                    </a>
                 </div>
             </CardContent>
         </>

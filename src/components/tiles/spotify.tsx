@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { CardContent } from "../ui/card";
 import { moranga } from "@/app/fonts";
 
 type SongData = {
