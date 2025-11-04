@@ -15,7 +15,7 @@ import { cn } from "@/lib/utils";
 import { Map } from "./tiles/map";
 import { Project1 } from "./tiles/project1";
 import { Spotify } from "./tiles/spotify";
-import { Twitter } from "./tiles/twitter";
+import { Github } from "./tiles/github";
 import { DarkMode } from "./tiles/dark-mode";
 import { History } from "./tiles/history";
 import { Project2 } from "./tiles/project2";
@@ -46,7 +46,7 @@ const componentMap: Record<
     b: () => <Map />,
     c: () => <Project1 />,
     d: ({ song }) => <Spotify song={song} />,
-    e: () => <Twitter />,
+    e: () => <Github />,
     f: () => <DarkMode />,
     g: () => <History />,
     h: () => <Project2 />,
@@ -97,14 +97,14 @@ function Layout({ tab, song }: LayoutProps) {
         <AnimatePresence>
             {song && (
                 <motion.div
-                    className="w-screen p-0"
+                    className="w-screen p-0 pb-20"
                     key="grid"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{
-                        duration: 0.5,
-                        ease: "easeOut",
-                    }}
+                    // initial={{ opacity: 0, y: 20 }}
+                    // animate={{ opacity: 1, y: 0 }}
+                    // transition={{
+                    //     duration: 0.5,
+                    //     ease: "easeOut",
+                    // }}
                 >
                     <div className="w-full responsive">
                         <ResponsiveReactGridLayout
@@ -125,7 +125,6 @@ function Layout({ tab, song }: LayoutProps) {
                             }
                             isResizable={false}
                             draggableCancel=".no-drag"
-                            useCSSTransforms={false}
                         >
                             {keys.map((key) => {
                                 const layoutItem = activeLayout.find(
