@@ -189,32 +189,11 @@ body {
 
 @layer base {
     * {
-        @apply border-border outline-ring/50;
+        @apply border-border outline-ring/50 box-border;
     }
     body {
         @apply bg-background text-foreground;
     }
-}
-
-.react-grid-item {
-    transition: 500ms;
-    will-change: transform;
-}
-
-.react-grid-item.react-grid-placeholder {
-    background: rgb(237, 233, 233) none repeat scroll 0% 0% / auto padding-box
-        border-box;
-    opacity: 1;
-    transition-duration: 0.5s;
-    z-index: 1;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    -o-user-select: none;
-    user-select: none;
-    border-radius: 32px;
-    transition: 0.5s;
-    will-change: transform;
 }
 
 @keyframes bar {
@@ -242,8 +221,20 @@ body {
     }
 }
 
-* {
-    box-sizing: border-box;
+.react-grid-item.react-grid-placeholder {
+    background: rgb(237, 233, 233) none repeat scroll 0% 0% / auto padding-box
+        border-box;
+    opacity: 1;
+    transition-duration: 0.5s;
+    z-index: 1;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    border-radius: 32px;
+    transition: 0.5s;
+    will-change: transform;
 }
 
 .spotify-text {

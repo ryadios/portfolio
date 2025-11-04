@@ -108,7 +108,7 @@ function Layout({ tab, song }: LayoutProps) {
                 >
                     <div className="w-full responsive">
                         <ResponsiveReactGridLayout
-                            className="w-full"
+                            className={"w-full"}
                             breakpoints={{
                                 xl: 1200,
                                 lg: 800,
