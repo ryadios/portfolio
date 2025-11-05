@@ -99,12 +99,12 @@ function Layout({ tab, song }: LayoutProps) {
                 <motion.div
                     className="w-screen p-0 pb-20"
                     key="grid"
-                    // initial={{ opacity: 0, y: 20 }}
-                    // animate={{ opacity: 1, y: 0 }}
-                    // transition={{
-                    //     duration: 0.5,
-                    //     ease: "easeOut",
-                    // }}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{
+                        duration: 0.5,
+                        ease: "easeOut",
+                    }}
                 >
                     <div className="w-full responsive">
                         <ResponsiveReactGridLayout
