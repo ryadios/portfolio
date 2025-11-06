@@ -26,12 +26,15 @@ export function Newsletter() {
                         Subscribe
                     </button>
                     <p className="text-[#8a949e] tracking-tight font-medium text-sm">
-                        You&apos;ll be subscriber number{" "}
+                        <span className="hidden lg:inline">
+                            You&apos;ll be subscriber number{" "}
+                        </span>
                         <span
                             className={`${moranga.className} font-bold text-2xl text-black`}
                         >
                             0
                         </span>
+                        <span className="inline lg:hidden"> subscribers</span>
                     </p>
                 </div>
             </div>

@@ -9,7 +9,7 @@ type SongData = {
 
 export function Spotify({ song }: { song: SongData }) {
     return (
-        <div className="size-full flex flex-col justify-between px-10 py-9 lg:px-8 lg:py-7 xl:px-9.5 xl:py-8">
+        <div className="size-full flex flex-col justify-between px-10 py-9 md:px-8 md:py-7 lg:px-9.5 lg:py-8">
             <Image
                 src="/icons/spotify.svg"
                 alt="Spotify Icon"
