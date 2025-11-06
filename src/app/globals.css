@@ -233,6 +233,10 @@
     will-change: transform;
 }
 
+.react-grid-item {
+    transition: all 0.5s ease;
+}
+
 /* Spotify */
 .spotify-text {
     color: rgb(110, 210, 183);

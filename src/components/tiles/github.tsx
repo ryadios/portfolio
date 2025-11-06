@@ -1,11 +1,10 @@
 import Image from "next/image";
-import { CardContent } from "../ui/card";
 import { config } from "../../../config";
 
 export function Github() {
     return (
         <>
-            <CardContent className="size-full flex items-center justify-center bg-[#24292e]">
+            <div className="size-full flex items-center justify-center bg-[#24292e]">
                 {/* <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="52.58"
@@ -37,7 +36,7 @@ export function Github() {
                         />
                     </a>
                 </div>
-            </CardContent>
+            </div>
         </>
     );
 }
