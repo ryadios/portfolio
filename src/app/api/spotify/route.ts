@@ -64,6 +64,7 @@ export async function GET() {
                     status: "Offline. Last Played",
                     song: track.name,
                     artist: track.artists
+                        .slice(0, 2)
                         .map((a: SpotifyArtist) => a.name)
                         .join(", "),
                 };
@@ -79,7 +80,10 @@ export async function GET() {
         lastTrack = {
             status: "Currently Playing",
             song: track.name,
-            artist: track.artists.map((a: SpotifyArtist) => a.name).join(", "),
+            artist: track.artists
+                .slice(0, 2)
+                .map((a: SpotifyArtist) => a.name)
+                .join(", "),
         };
 
         return NextResponse.json(lastTrack);
