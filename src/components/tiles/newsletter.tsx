@@ -1,6 +1,6 @@
 import { moranga } from "@/app/fonts";
 
-export function Subscribe() {
+export function Newsletter() {
     return (
         <>
             <div className="py-[40px] px-[44px] size-full flex flex-col justify-between items-center">
