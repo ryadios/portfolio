@@ -17,7 +17,7 @@ import { Project1 } from "./tiles/project1";
 import { Spotify } from "./tiles/spotify";
 import { Github } from "./tiles/github";
 import { DarkMode } from "./tiles/dark-mode";
-import { History } from "./tiles/history";
+import { Blog } from "./tiles/blog";
 import { Project2 } from "./tiles/project2";
 import { Project3 } from "./tiles/project3";
 import { Newsletter } from "./tiles/newsletter";
@@ -47,7 +47,7 @@ const componentMap: Record<
     d: ({ song }) => <Spotify song={song} />,
     e: () => <Github />,
     f: () => <DarkMode />,
-    g: () => <History />,
+    g: () => <Blog />,
     h: () => <Project2 />,
     i: () => <Project3 />,
     j: () => <Newsletter />,
