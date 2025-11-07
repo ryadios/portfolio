@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { silka } from "./fonts";
+import { ThemeProvider } from "@/components/theme-provider";
 
 export const metadata: Metadata = {
     title: "Aditya — Developer, Designer",
@@ -13,11 +14,18 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en">
+        <html lang="en" suppressHydrationWarning>
             <body
                 className={`${silka.className} antialiased bg-[#f7f2f2] select-none`}
             >
-                {children}
+                <ThemeProvider
+                    attribute="class"
+                    defaultTheme="light"
+                    enableSystem
+                    disableTransitionOnChange
+                >
+                    {children}
+                </ThemeProvider>
             </body>
         </html>
     );
