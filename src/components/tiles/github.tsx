@@ -1,11 +1,12 @@
 import Image from "next/image";
 import { config } from "../../../config";
+import { Arrow } from "../arrow";
+import { Button } from "../button";
 
 export function Github() {
     return (
-        <>
-            <div className="size-full flex items-center justify-center bg-[#24292e]">
-                {/* <svg
+        <div className="size-full flex items-center justify-center bg-[#24292e]">
+            {/* <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="52.58"
                     height="42.73"
@@ -19,24 +20,20 @@ export function Github() {
                     ></path>
                 </svg> */}
 
-                <Image
-                    src="/icons/github.svg"
-                    alt="github"
-                    width={48}
-                    height={48}
-                    className="github-icon"
-                />
-                <div className="bg-white rounded-full size-9 absolute bottom-3.5 left-3.5 flex items-center justify-center tooltip-btn no-drag">
+            <Image
+                src="/icons/github.svg"
+                alt="github"
+                width={48}
+                height={48}
+                className="github-icon"
+            />
+            <div className="absolute bottom-3.5 left-3.5">
+                <Button variant="tooltip">
                     <a href={config.github} target="_blank">
-                        <Image
-                            src="/icons/arrow.svg"
-                            alt="arrow"
-                            width={18}
-                            height={18}
-                        />
+                        <Arrow />
                     </a>
-                </div>
+                </Button>
             </div>
-        </>
+        </div>
     );
 }

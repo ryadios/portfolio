@@ -1,4 +1,6 @@
 import { moranga } from "@/app/fonts";
+import { Arrow } from "../arrow";
+import { Button } from "../button";
 
 export function Newsletter() {
     return (
@@ -19,9 +21,10 @@ export function Newsletter() {
                 className="no-drag w-full bg-transparent border-0 border-b-2 border-b-[rgb(240,242,248)] py-3 px-0 mb-2 rounded-none focus:outline-none"
             />
             <div className="w-full flex justify-between items-center">
-                <button className="no-drag font-medium h-9 flex items-center px-3 rounded-xl text-sm [box-shadow:0_0_0_2px_rgb(240,242,248)] cursor-pointer transition-shadow duration-200 ease-out hover:[box-shadow:0_0_0_5px_rgb(240,242,248)]">
-                    Subscribe
-                </button>
+                <Button className="flex justify-center items-center font-medium">
+                    <Arrow />
+                    <p className="text-sm ml-2">Subscribe</p>
+                </Button>
                 <p className="text-[#8a949e] tracking-tight font-medium text-sm">
                     <span className="hidden lg:inline">
                         You&apos;ll be subscriber number{" "}

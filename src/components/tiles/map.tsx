@@ -6,6 +6,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import "maplibre-gl/dist/maplibre-gl.css";
 import Image from "next/image";
+import { Button } from "../button";
 
 const zoomMap: Record<number, number> = {
     1: 9,
@@ -33,7 +34,7 @@ function MapControls() {
     return (
         <AnimatePresence>
             {zoomLevel !== 1 && (
-                <motion.button
+                <motion.div
                     key="minus"
                     initial={{ scale: 0, opacity: 0 }}
                     exit={{ scale: 0, opacity: 0 }}
@@ -44,15 +45,16 @@ function MapControls() {
                         damping: 15,
                         delay: 0.5,
                     }}
-                    onClick={zoomOut}
-                    className="absolute left-3.5 bottom-3.5 size-8 no-drag bg-white rounded-full flex items-center justify-center z-1 tooltip-btn"
+                    className="absolute left-3.5 bottom-3.5 size-8"
                 >
-                    <MinusIcon className="size-4 stroke-3" />
-                </motion.button>
+                    <Button variant="tooltip" onClick={zoomOut}>
+                        <MinusIcon className="size-4 stroke-3" />
+                    </Button>
+                </motion.div>
             )}
 
             {zoomLevel !== 2 && (
-                <motion.button
+                <motion.div
                     key="plus"
                     initial={{ scale: 0, opacity: 0 }}
                     exit={{ scale: 0, opacity: 0 }}
@@ -63,11 +65,12 @@ function MapControls() {
                         damping: 15,
                         delay: 0.5,
                     }}
-                    onClick={zoomIn}
-                    className="absolute right-3.5 bottom-3.5 size-8 no-drag bg-white rounded-full flex items-center justify-center z-1 tooltip-btn"
+                    className="absolute right-3.5 bottom-3.5 size-8"
                 >
-                    <PlusIcon className="size-4 stroke-3" />
-                </motion.button>
+                    <Button variant="tooltip" onClick={zoomIn}>
+                        <PlusIcon className="size-4 stroke-3" />
+                    </Button>
+                </motion.div>
             )}
         </AnimatePresence>
     );
