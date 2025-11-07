@@ -61,7 +61,7 @@ const Navbar = ({
     }, [tab, setW, setX]);
 
     return (
-        <nav className="responsive-nav font-medium text-[14px]">
+        <nav className="responsive-nav font-medium text-sm">
             <Image
                 src="/images/ryadi.png"
                 alt="ryadi"
