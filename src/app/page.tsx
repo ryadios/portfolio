@@ -18,7 +18,8 @@ export default async function Home() {
         console.log(err);
         return (
             <div>
-                <h1>Found something fishy...</h1>;
+                <h1>Found something fishy...</h1>
+                <p>BASE URL: {baseUrl}</p>
                 <p>{JSON.stringify(err, null, 2)}</p>
             </div>
         );
