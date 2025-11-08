@@ -68,7 +68,7 @@ const Navbar = ({
                 width={102}
                 height={24}
             />
-            <div className="relative flex items-center justify-between bg-[rgba(0,0,0,0.04)] rounded-[23px] p-[5px]">
+            <div className="relative flex items-center justify-between bg-[rgba(0,0,0,0.04)] dark:bg-background rounded-[23px] p-[5px] dark:border-2 dark:border-[rgb(48,54,61)]">
                 {tabs.map(({ key, label }) => (
                     <div
                         key={key}
@@ -76,9 +76,7 @@ const Navbar = ({
                             tabRefs.current[key] = el;
                         }}
                         className={`tab flex items-center h-8 px-4 rounded-[50px] transition-opacity duration-300 z-10 ${
-                            tab === key
-                                ? "text-black"
-                                : "text-black-300 hover:opacity-50 cursor-pointer"
+                            tab !== key && "hover:opacity-50 cursor-pointer"
                         }`}
                         onClick={() => setTab(key)}
                     >
@@ -86,7 +84,7 @@ const Navbar = ({
                     </div>
                 ))}
                 <div
-                    className="absolute bg-white rounded-xl h-8"
+                    className="absolute bg-white dark:bg-muted rounded-xl h-8"
                     style={{
                         left: `${left}px`,
                         width: `${sliderWidth}px`,
@@ -94,7 +92,7 @@ const Navbar = ({
                     }}
                 ></div>
             </div>
-            <a className="text-black hover:opacity-50 cursor-pointer transition-opacity duration-200">
+            <a className="hover:opacity-50 cursor-pointer transition-opacity duration-200">
                 <p>Contact</p>
             </a>
         </nav>

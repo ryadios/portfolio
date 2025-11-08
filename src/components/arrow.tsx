@@ -10,6 +10,7 @@ export function Arrow(
             alt="arrow"
             width={18}
             height={18}
+            className="dark:invert"
         />
     );
 }

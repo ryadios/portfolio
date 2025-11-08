@@ -65,6 +65,9 @@ type Breakpoint = keyof typeof rowHeights;
 function Layout({ tab, song }: LayoutProps) {
     const [currentlayout, setCurrentLayout] = useState(HomeLayouts);
     const [breakpoint, setBreakpoint] = useState<Breakpoint>("lg");
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => setMounted(true), []);
 
     useEffect(() => {
         switch (tab) {
@@ -94,7 +97,7 @@ function Layout({ tab, song }: LayoutProps) {
 
     return (
         <AnimatePresence>
-            {song && (
+            {song && mounted && (
                 <motion.div
                     className="w-screen p-0 pb-20"
                     key="grid"
@@ -135,7 +138,7 @@ function Layout({ tab, song }: LayoutProps) {
                                     <div
                                         key={key}
                                         className={cn(
-                                            "rounded-xl p-0 bg-white visible cursor-grab active:cursor-grabbing overflow-hidden hover:shadow-[0_5px_24px_0_rgba(100,100,111,0.1)] group",
+                                            "rounded-xl p-0 bg-card visible cursor-grab active:cursor-grabbing overflow-hidden hover:shadow-[0_5px_24px_0_rgba(100,100,111,0.1)] dark:shadow-[inset_0_0_0_2px_rgb(48,54,61)] group",
                                             disabled && "opacity-40"
                                         )}
                                     >

@@ -17,7 +17,7 @@ export function Main({ song }: { song: SongData }) {
     const [w, setW] = useState(0);
 
     return (
-        <main className="bg-[#f7f2f2]">
+        <main>
             <Navbar
                 tab={tab}
                 setTab={setTab}

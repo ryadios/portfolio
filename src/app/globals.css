@@ -6,9 +6,9 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-    --background: oklch(1 0 0);
+    --background: #f7f2f2;
     --foreground: oklch(0.145 0 0);
-    --card: oklch(1 0 0);
+    --card: white;
     --card-foreground: oklch(0.145 0 0);
     --popover: oklch(1 0 0);
     --popover-foreground: oklch(0.145 0 0);
@@ -66,9 +66,9 @@
 }
 
 .dark {
-    --background: oklch(0.145 0 0);
+    --background: #090c10;
     --foreground: oklch(0.985 0 0);
-    --card: oklch(0.205 0 0);
+    --card: #0d1117;
     --card-foreground: oklch(0.985 0 0);
     --popover: oklch(0.205 0 0);
     --popover-foreground: oklch(0.985 0 0);
@@ -76,7 +76,7 @@
     --primary-foreground: oklch(0.205 0 0);
     --secondary: oklch(0.269 0 0);
     --secondary-foreground: oklch(0.985 0 0);
-    --muted: oklch(0.269 0 0);
+    --muted: #21262d;
     --muted-foreground: oklch(0.708 0 0);
     --accent: oklch(0.269 0 0);
     --accent-foreground: oklch(0.985 0 0);
@@ -101,7 +101,7 @@
     --font-sans: system-ui, sans-serif;
     --font-serif: serif;
     --font-mono: monospace;
-    --radius: 1.25rem;
+    --radius: 1.75rem;
     --shadow-x: 0px;
     --shadow-y: 8px;
     --shadow-blur: 12px;
@@ -199,6 +199,10 @@
     }
 }
 
+body {
+    @apply bg-background;
+}
+
 /* Animations */
 @keyframes bar {
     0%,
@@ -236,6 +240,11 @@
     user-select: none;
     z-index: 1;
     will-change: transform;
+}
+
+.dark .react-grid-item.react-grid-placeholder {
+    background: rgb(28, 32, 37) none repeat scroll 0% 0% / auto padding-box
+        border-box;
 }
 
 .react-grid-item {
