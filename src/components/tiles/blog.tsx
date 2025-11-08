@@ -16,10 +16,6 @@ export function Blog() {
                 </p>
             </div>
             <div className="flex justify-between items-center w-full">
-                {/* <button className="no-drag font-medium h-9 flex items-center px-3 rounded-xl [box-shadow:0_0_0_2px_rgb(240,242,248)] cursor-pointer transition-shadow duration-200 ease-out hover:[box-shadow:0_0_0_5px_rgb(240,242,248)]">
-                    <Arrow />
-                    <p className="text-sm ml-2">Read more</p>
-                </button> */}
                 <Button className="flex justify-center items-center font-medium">
                     <Arrow />
                     <p className="text-sm ml-2">Read more</p>

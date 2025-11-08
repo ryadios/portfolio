@@ -18,7 +18,7 @@ export function Newsletter() {
                 type="email"
                 name="email"
                 placeholder="Email address"
-                className="no-drag w-full bg-transparent border-0 border-b-2 border-b-[rgb(240,242,248)] py-3 px-0 mb-2 rounded-none focus:outline-none"
+                className="no-drag w-full bg-transparent border-0 border-b-2 border-b-[rgb(240,242,248)] dark:border-[rgb(48,54,61)] py-3 px-0 mb-2 rounded-none focus:outline-none"
             />
             <div className="w-full flex justify-between items-center">
                 <Button className="flex justify-center items-center font-medium">
