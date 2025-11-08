@@ -92,7 +92,7 @@ const Navbar = ({
                     }}
                 ></div>
             </div>
-            <a className="hover:opacity-50 cursor-pointer transition-opacity duration-200">
+            <a className="hover:opacity-50 cursor-pointer transition-opacity duration-200 contact">
                 <p>Contact</p>
             </a>
         </nav>

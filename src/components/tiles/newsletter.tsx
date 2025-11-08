@@ -30,7 +30,7 @@ export function Newsletter() {
                         You&apos;ll be subscriber number{" "}
                     </span>
                     <span
-                        className={`${moranga.className} font-bold text-2xl text-black`}
+                        className={`${moranga.className} font-bold text-2xl dark:text-white`}
                     >
                         0
                     </span>

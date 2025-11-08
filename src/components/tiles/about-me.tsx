@@ -1,21 +1,20 @@
-import { RefreshCcw } from "lucide-react";
 import Image from "next/image";
 import { moranga } from "@/app/fonts";
 import { Button } from "../button";
 
 export function AboutMe() {
     return (
-        <div className="px-10 py-8 size-full flex flex-col items-start justify-end overflow-hidden gap-6">
+        <div className="px-8 py-6 sm:px-10 sm:py-8 size-full flex flex-col items-start justify-end overflow-hidden gap-6">
             <div className="flex justify-between items-center pointer-events-none">
                 <Image
                     src="/images/cat-profile.png"
                     alt="memoji"
-                    className="max-h-32"
+                    className="max-h-32 size-[50px] sm:size-[100px]"
                     width={100}
                     height={100}
                 />
             </div>
-            <p className="leading-[26px]">
+            <p className="leading-6 sm:leading-6.5 text-[13px] sm:text-sm">
                 I&apos;m{" "}
                 <span className={`${moranga.className} font-bold text-3xl`}>
                     aditya

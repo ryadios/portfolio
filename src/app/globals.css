@@ -315,4 +315,8 @@
     .responsive-nav img {
         margin: 36px 0 24px;
     }
+
+    .responsive-nav .contact {
+        display: none;
+    }
 }

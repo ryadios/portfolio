@@ -29,7 +29,7 @@ export function Spotify({ song }: { song: SongData }) {
                     <p className="font-medium lg:text-sm">{song.status}</p>
                 </div>
                 <h2
-                    className={`${moranga.className} whitespace-nowrap overflow-hidden text-ellipsis w-full text-2xl leading-[32px] font-bold truncate`}
+                    className={`${moranga.className} w-full text-2xl leading-[32px] font-bold text-ellipsis sm:whitespace-nowrap sm:overflow-hidden sm:truncate`}
                 >
                     {song.song}
                 </h2>
