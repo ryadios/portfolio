@@ -15,9 +15,7 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en" suppressHydrationWarning>
-            <body
-                className={`${silka.className} antialiased bg-[#f7f2f2] select-none`}
-            >
+            <body className={`${silka.className} antialiased select-none`}>
                 <ThemeProvider
                     attribute="class"
                     defaultTheme="light"
