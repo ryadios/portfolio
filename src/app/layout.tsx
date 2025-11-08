@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { silka } from "./fonts";
 import { ThemeProvider } from "@/components/theme-provider";
+import { ConstructionBanner } from "@/components/under-construction";
 
 export const metadata: Metadata = {
     title: "Aditya — Developer, Designer",
@@ -22,6 +23,9 @@ export default function RootLayout({
                     enableSystem
                     disableTransitionOnChange
                 >
+                    {process.env.NODE_ENV === "production" && (
+                        <ConstructionBanner />
+                    )}
                     {children}
                 </ThemeProvider>
             </body>
