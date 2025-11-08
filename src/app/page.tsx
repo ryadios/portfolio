@@ -16,6 +16,11 @@ export default async function Home() {
         return <Main song={data} />;
     } catch (err) {
         console.log(err);
-        return null;
+        return (
+            <div>
+                <h1>Found something fishy...</h1>;
+                <p>{JSON.stringify(err, null, 2)}</p>
+            </div>
+        );
     }
 }
