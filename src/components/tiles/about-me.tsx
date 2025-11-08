@@ -35,6 +35,7 @@ export function AboutMe() {
                     width="15.702"
                     height="15.702"
                     viewBox="0 0 15.702 15.702"
+                    className="dark:invert"
                 >
                     <g
                         id="Group_6"

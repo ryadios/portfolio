@@ -14,7 +14,7 @@ export function DarkMode() {
     return (
         <div className="size-full flex justify-center items-center">
             <div
-                className="no-drag w-20 h-12 flex items-center rounded-[40px] relative bg-[#f0f2f8] dark:bg-muted dark:shadow-[inset_0_0_0_2px_rgb(48,54,61)]"
+                className="no-drag w-20 h-12 flex items-center rounded-[40px] relative bg-[#f0f2f8] dark:bg-muted dark:shadow-[inset_0_0_0_2px_rgb(48,54,61)] cursor-pointer"
                 onClick={() =>
                     theme === "light" ? setTheme("dark") : setTheme("light")
                 }

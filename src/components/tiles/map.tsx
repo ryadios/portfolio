@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 import "maplibre-gl/dist/maplibre-gl.css";
 import Image from "next/image";
 import { Button } from "../button";
+import { useTheme } from "next-themes";
 
 const zoomMap: Record<number, number> = {
     1: 9,
@@ -85,7 +86,11 @@ function Overlay() {
 }
 
 export function Map() {
-    const mapId = process.env.NEXT_PUBLIC_MAPTILER_MAP_ID;
+    const { theme } = useTheme();
+    const mapId =
+        theme === "light"
+            ? process.env.NEXT_PUBLIC_MAPTILER_MAP_ID
+            : process.env.NEXT_PUBLIC_MAPTILER_DARK_MAP_ID;
     const key = process.env.NEXT_PUBLIC_MAPTILER_KEY;
 
     return (
