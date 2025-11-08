@@ -6,8 +6,10 @@ import { AnimatePresence, motion } from "framer-motion";
 export function DarkMode() {
     const { theme, setTheme } = useTheme();
 
-    const moonDelay = theme === "dark" ? 0.25 : 0;
-    const sunDelay = theme === "light" ? 0.25 : 0;
+    // Delay the exit animation: when transitioning away from a theme,
+    // the exiting icon waits 0.25s before animating out
+    const moonDelay = theme === "dark" ? 0.25 : 0; // moon exits when switching to dark
+    const sunDelay = theme === "light" ? 0.25 : 0; // sun exits when switching to light
 
     return (
         <div className="size-full flex justify-center items-center">
