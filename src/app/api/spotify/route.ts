@@ -1,8 +1,8 @@
+import { getAccessToken } from "@/lib/spotify";
 import { NextResponse } from "next/server";
 
 export const revalidate = 300; // cache for 5 minutes
 
-const tokenEndpoint = "https://accounts.spotify.com/api/token";
 const nowPlayingEndpoint =
     "https://api.spotify.com/v1/me/player/currently-playing";
 const recentlyPlayedEndpoint =
@@ -22,27 +22,6 @@ let lastTrack = {
     song: "Avid",
     artist: "SawanoHiroyuki[nZk], mizuki",
 };
-
-async function getAccessToken() {
-    const refresh_token = process.env.SPOTIFY_REFRESH_TOKEN!;
-    const res = await fetch(tokenEndpoint, {
-        method: "POST",
-        headers: {
-            Authorization: `Basic ${Buffer.from(
-                `${process.env.SPOTIFY_CLIENT_ID}:${process.env.SPOTIFY_CLIENT_SECRET}`
-            ).toString("base64")}`,
-            "Content-Type": "application/x-www-form-urlencoded",
-        },
-        body: new URLSearchParams({
-            grant_type: "refresh_token",
-            refresh_token,
-        }),
-        cache: "no-store",
-    });
-    const data = await res.json();
-    if (!data.access_token) throw new Error("Failed to get access token");
-    return data.access_token;
-}
 
 export async function GET() {
     try {

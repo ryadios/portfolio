@@ -1,14 +1,19 @@
 import { Main } from "@/components/main";
 
 export default async function Home() {
-    let data = null;
+    const baseUrl =
+        process.env.NEXT_PUBLIC_SITE_URL ||
+        (process.env.VERCEL_URL
+            ? `https://${process.env.VERCEL_URL}`
+            : "http://localhost:3000");
+
     try {
-        const res = await fetch(`${process.env.BASE_URL}/api/spotify`);
+        const res = await fetch(`${baseUrl}/api/spotify`);
         if (!res.ok) throw new Error("Failed to fetch Spotify data");
-        data = await res.json();
+        const data = await res.json();
+        return <Main song={data} />;
     } catch (err) {
         console.log(err);
+        return null;
     }
-
-    return <Main song={data} />;
 }
