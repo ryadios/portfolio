@@ -57,7 +57,7 @@ export async function GET() {
         if (!track) return NextResponse.json(lastTrack);
 
         lastTrack = {
-            status: "Currently Playing",
+            status: "Offline. Last Played",
             song: track.name,
             artist: track.artists
                 .slice(0, 2)
