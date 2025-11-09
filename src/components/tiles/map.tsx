@@ -87,31 +87,46 @@ function Overlay() {
 
 export function Map() {
     const { theme } = useTheme();
+
     const mapId =
         theme === "light"
-            ? process.env.NEXT_PUBLIC_MAPTILER_MAP_ID
-            : process.env.NEXT_PUBLIC_MAPTILER_DARK_MAP_ID;
+            ? process.env.NEXT_PUBLIC_MAPTILER_MAP_ID!
+            : process.env.NEXT_PUBLIC_MAPTILER_DARK_MAP_ID!;
     const key = process.env.NEXT_PUBLIC_MAPTILER_KEY;
 
+    const mapStyle = (id: string) =>
+        `https://api.maptiler.com/maps/${id}/style.json?key=${key}`;
+
     return (
-        <div className="size-full flex items-center justify-center relative z-2">
-            <MapLibre
-                initialViewState={{
-                    latitude: 26.84689,
-                    longitude: 80.985,
-                    zoom: 13,
-                }}
-                style={{ width: "100%", height: "100%", borderRadius: "14px" }}
-                mapStyle={`https://api.maptiler.com/maps/${mapId}/style.json?key=${key}`}
-                attributionControl={false} // TODO: add openstreetmap attribution in footer
-                dragPan={false}
-                scrollZoom={false}
-                doubleClickZoom={false}
-                touchZoomRotate={false}
-                keyboard={false}
-            >
-                <MapControls />
-            </MapLibre>
+        <div className="relative w-full h-full overflow-hidden rounded-[14px]">
+            <AnimatePresence mode="wait">
+                <motion.div
+                    key={mapId}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.2, ease: "easeIn" }}
+                    className="absolute inset-0"
+                >
+                    <MapLibre
+                        initialViewState={{
+                            latitude: 26.84689,
+                            longitude: 80.985,
+                            zoom: 13,
+                        }}
+                        style={{ width: "100%", height: "100%" }}
+                        mapStyle={mapStyle(mapId)}
+                        attributionControl={false}
+                        dragPan={false}
+                        scrollZoom={false}
+                        doubleClickZoom={false}
+                        touchZoomRotate={false}
+                        keyboard={false}
+                    >
+                        <MapControls />
+                    </MapLibre>
+                </motion.div>
+            </AnimatePresence>
             <Overlay />
         </div>
     );
