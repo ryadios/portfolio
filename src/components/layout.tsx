@@ -126,7 +126,9 @@ function Layout({ tab, song }: LayoutProps) {
                                 setBreakpoint(bp as Breakpoint)
                             }
                             isResizable={false}
-                            isDraggable={breakpoint !== "xs"}
+                            isDraggable={
+                                breakpoint !== "xs" && breakpoint !== "sm"
+                            }
                             useCSSTransforms={false}
                             draggableCancel=".no-drag"
                         >
