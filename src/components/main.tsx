@@ -16,6 +16,8 @@ export function Main({ song }: { song: SongData }) {
     const [x, setX] = useState(0);
     const [w, setW] = useState(0);
 
+    console.log(song);
+
     return (
         <main>
             <Navbar

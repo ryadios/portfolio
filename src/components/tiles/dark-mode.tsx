@@ -14,7 +14,9 @@ export function DarkMode() {
     return (
         <div className="size-full flex justify-center items-center">
             <div
-                className="no-drag w-20 h-12 flex items-center rounded-[40px] relative bg-[#f0f2f8] dark:bg-muted dark:shadow-[inset_0_0_0_2px_rgb(48,54,61)] cursor-pointer"
+                className="no-drag w-20 h-12 flex items-center rounded-[40px]
+                    relative bg-[#f0f2f8] dark:bg-muted
+                    dark:shadow-[inset_0_0_0_2px_rgb(48,54,61)] cursor-pointer"
                 onClick={() =>
                     theme === "light" ? setTheme("dark") : setTheme("light")
                 }
@@ -32,7 +34,8 @@ export function DarkMode() {
                         ease: [0.65, 0.05, 0.36, 1],
                         duration: 0.55,
                     }}
-                    className="size-9 rounded-[30px] flex items-center justify-center bg-[#0d1117]"
+                    className="size-9 rounded-[30px] flex items-center
+                        justify-center bg-[#0d1117]"
                 >
                     <AnimatePresence mode="wait">
                         {theme === "light" ? (
