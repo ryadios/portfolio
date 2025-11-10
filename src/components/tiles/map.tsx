@@ -35,8 +35,7 @@ function MapControls() {
     return (
         <AnimatePresence>
             {zoomLevel !== 1 && (
-                <motion.div
-                    key="minus"
+                <Button
                     initial={{ scale: 0, opacity: 0 }}
                     exit={{ scale: 0, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
@@ -47,15 +46,15 @@ function MapControls() {
                         delay: 0.5,
                     }}
                     className="absolute left-3.5 bottom-3.5 size-8"
+                    variant="tooltip"
+                    onClick={zoomOut}
                 >
-                    <Button variant="tooltip" onClick={zoomOut}>
-                        <MinusIcon className="size-4 stroke-3" />
-                    </Button>
-                </motion.div>
+                    <MinusIcon className="size-4 stroke-3" />
+                </Button>
             )}
 
             {zoomLevel !== 2 && (
-                <motion.div
+                <Button
                     key="plus"
                     initial={{ scale: 0, opacity: 0 }}
                     exit={{ scale: 0, opacity: 0 }}
@@ -67,11 +66,11 @@ function MapControls() {
                         delay: 0.5,
                     }}
                     className="absolute right-3.5 bottom-3.5 size-8"
+                    variant="tooltip"
+                    onClick={zoomIn}
                 >
-                    <Button variant="tooltip" onClick={zoomIn}>
-                        <PlusIcon className="size-4 stroke-3" />
-                    </Button>
-                </motion.div>
+                    <PlusIcon className="size-4 stroke-3" />
+                </Button>
             )}
         </AnimatePresence>
     );
@@ -79,7 +78,13 @@ function MapControls() {
 
 function Overlay() {
     return (
-        <div className="size-[82px] shadow-[0_4px_12px_rgba(0,0,0,0.25)] lg:size-24 rounded-full absolute inset-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#98d0ff80] flex items-center justify-center pointer-events-none border-4 border-white group-hover:scale-110 transition-all duration-500">
+        <div
+            className="size-[82px] shadow-[0_4px_12px_rgba(0,0,0,0.25)]
+                lg:size-24 rounded-full absolute inset-1/2 -translate-x-1/2
+                -translate-y-1/2 bg-[#98d0ff80] flex items-center justify-center
+                pointer-events-none border-4 border-white group-hover:scale-110
+                transition-all duration-500"
+        >
             <Image src="/images/cat.png" alt="User" width={50} height={50} />
         </div>
     );

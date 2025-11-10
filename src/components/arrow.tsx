@@ -8,8 +8,8 @@ export function Arrow(
             {...props}
             src="/icons/arrow.svg"
             alt="arrow"
-            width={18}
-            height={18}
+            width={18.25}
+            height={18.25}
             className="dark:invert"
         />
     );
