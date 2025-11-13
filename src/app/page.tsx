@@ -8,7 +8,9 @@ export default async function Home() {
             : "http://localhost:3000");
 
     try {
-        const res = await fetch(`${baseUrl}/api/spotify`);
+        const res = await fetch(`${baseUrl}/api/spotify`, {
+            next: { revalidate: 60 },
+        });
         if (!res.ok) throw new Error("Failed to fetch Spotify data");
         const data = await res.json();
 
