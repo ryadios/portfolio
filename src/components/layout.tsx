@@ -18,8 +18,8 @@ import { Spotify } from "./tiles/spotify";
 import { Github } from "./tiles/github";
 import { DarkMode } from "./tiles/dark-mode";
 import { Blog } from "./tiles/blog";
-import { Project2 } from "./tiles/project2";
-import { Project3 } from "./tiles/project3";
+import { Empress } from "./tiles/empress";
+import { Fluence } from "./tiles/fluence";
 import { Newsletter } from "./tiles/newsletter";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -48,8 +48,8 @@ const componentMap: Record<
     e: () => <Github />,
     f: () => <DarkMode />,
     g: () => <Blog />,
-    h: () => <Project2 />,
-    i: () => <Project3 />,
+    h: () => <Empress />,
+    i: () => <Fluence />,
     j: () => <Newsletter />,
 };
 
@@ -141,7 +141,12 @@ function Layout({ tab, song }: LayoutProps) {
                                     <div
                                         key={key}
                                         className={cn(
-                                            "rounded-xl p-0 bg-card visible cursor-grab active:cursor-grabbing overflow-hidden hover:shadow-[0_5px_24px_0_rgba(100,100,111,0.1)] dark:shadow-[inset_0_0_0_2px_rgb(48,54,61)] group",
+                                            `rounded-xl p-0 bg-card visible
+                                            cursor-grab active:cursor-grabbing
+                                            overflow-hidden
+                                            hover:shadow-[0_5px_24px_0_rgba(100,100,111,0.1)]
+                                            dark:shadow-[inset_0_0_0_2px_rgb(48,54,61)]
+                                            group`,
                                             disabled && "opacity-40"
                                         )}
                                     >

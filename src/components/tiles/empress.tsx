@@ -1,5 +1,3 @@
-"use client";
-
 import { Arrow } from "../arrow";
 import { motion } from "framer-motion";
 import { useState } from "react";
@@ -7,7 +5,7 @@ import { cn } from "@/lib/utils";
 import { Tooltip } from "../tooltip";
 import Image from "next/image";
 
-export function Project1() {
+export function Empress() {
     const [hovered, setHovered] = useState(false);
 
     return (
@@ -18,8 +16,8 @@ export function Project1() {
             onMouseLeave={() => setHovered(false)}
         >
             <Image
-                src="/images/fluence.png"
-                alt="fluence"
+                src="/images/empress.png"
+                alt="empress"
                 width={564}
                 height={1161}
                 className="absolute top-0 left-0 size-full object-cover
@@ -38,7 +36,7 @@ export function Project1() {
                     }
                     className="mr-8 ml-4 text-sm whitespace-nowrap"
                 >
-                    Fluence
+                    Empress
                 </motion.p>
                 <div
                     className={cn(

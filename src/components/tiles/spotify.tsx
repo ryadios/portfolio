@@ -9,7 +9,10 @@ type SongData = {
 
 export function Spotify({ song }: { song: SongData }) {
     return (
-        <div className="size-full flex flex-col justify-between px-10 py-9 md:px-8 md:py-7 lg:px-9.5 lg:py-8">
+        <div
+            className="size-full flex flex-col justify-between px-10 py-9
+                md:px-8 md:py-7 lg:px-9.5 lg:py-8"
+        >
             <Image
                 src="/icons/spotify.svg"
                 alt="Spotify Icon"
@@ -22,14 +25,25 @@ export function Spotify({ song }: { song: SongData }) {
             <div>
                 <div className="flex items-center spotify-text mb-0">
                     <div className="h-5 mr-2 relative flex items-center">
-                        <div className="w-[3px] h-[3px] mr-[3px] rounded-[1.5px] bg-[rgb(110,210,183)] animate-bar1"></div>
-                        <div className="w-[3px] h-[3px] mr-[3px] rounded-[1.5px] bg-[rgb(110,210,183)] animate-bar2"></div>
-                        <div className="w-[3px] h-[3px] mr-[3px] rounded-[1.5px] bg-[rgb(110,210,183)] animate-bar3"></div>
+                        <div
+                            className="w-[3px] h-[3px] mr-[3px] rounded-[1.5px]
+                                bg-[rgb(110,210,183)] animate-bar1"
+                        ></div>
+                        <div
+                            className="w-[3px] h-[3px] mr-[3px] rounded-[1.5px]
+                                bg-[rgb(110,210,183)] animate-bar2"
+                        ></div>
+                        <div
+                            className="w-[3px] h-[3px] mr-[3px] rounded-[1.5px]
+                                bg-[rgb(110,210,183)] animate-bar3"
+                        ></div>
                     </div>
                     <p className="font-medium lg:text-sm">{song.status}</p>
                 </div>
                 <h2
-                    className={`${moranga.className} w-full text-2xl leading-[32px] font-bold text-ellipsis sm:whitespace-nowrap sm:overflow-hidden sm:truncate`}
+                    className={`${moranga.className} w-full text-2xl
+                        leading-[32px] font-bold text-ellipsis
+                        sm:whitespace-nowrap sm:overflow-hidden sm:truncate`}
                 >
                     {song.song}
                 </h2>

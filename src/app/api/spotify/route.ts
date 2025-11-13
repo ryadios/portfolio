@@ -1,7 +1,8 @@
 import { getAccessToken } from "@/lib/spotify";
+import { SongData } from "@/types/track";
 import { NextResponse } from "next/server";
 
-export const revalidate = 300; // cache for 5 minutes
+export const revalidate = 60; // cache for 1 minute
 
 const nowPlayingEndpoint =
     "https://api.spotify.com/v1/me/player/currently-playing";
@@ -15,7 +16,7 @@ interface SpotifyTrack {
     artists: SpotifyArtist[];
 }
 
-const lastTrack = {
+const lastTrack: SongData = {
     status: "Offline. Last Played",
     song: "Avid",
     artist: "SawanoHiroyuki[nZk], mizuki",
@@ -28,6 +29,10 @@ export async function GET() {
             headers: { Authorization: `Bearer ${token}` },
             cache: "no-store",
         });
+
+        if (res.status === 204 || res.status >= 400)
+            return NextResponse.json(lastTrack);
+
         const data = await res.json();
         const track: SpotifyTrack | undefined = data?.item;
 
@@ -42,7 +47,8 @@ export async function GET() {
                 .map((a: SpotifyArtist) => a.name)
                 .join(", "),
         });
-    } catch {
+    } catch (err) {
+        console.error(err);
         return NextResponse.json(lastTrack, { status: 500 });
     }
 }

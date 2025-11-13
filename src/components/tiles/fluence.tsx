@@ -6,8 +6,9 @@ import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { Tooltip } from "../tooltip";
 import Image from "next/image";
+import { config } from "../../../config";
 
-export function Project1() {
+export function Fluence() {
     const [hovered, setHovered] = useState(false);
 
     return (
@@ -20,12 +21,12 @@ export function Project1() {
             <Image
                 src="/images/fluence.png"
                 alt="fluence"
-                width={564}
-                height={1161}
+                width={1161}
+                height={564}
                 className="absolute top-0 left-0 size-full object-cover
                     transition-transform duration-800 group-hover:scale-105"
             />
-            <Tooltip hovered={hovered}>
+            <Tooltip hovered={hovered} href={config.projects.fluence}>
                 <motion.p
                     initial={false}
                     animate={
