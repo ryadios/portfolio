@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 import { Tooltip } from "../tooltip";
 import Image from "next/image";
 
-export function Project1() {
+export function Myria() {
     const [hovered, setHovered] = useState(false);
 
     return (
@@ -18,8 +18,8 @@ export function Project1() {
             onMouseLeave={() => setHovered(false)}
         >
             <Image
-                src="/images/fluence.png"
-                alt="fluence"
+                src="/images/myria.png"
+                alt="myria"
                 width={564}
                 height={1161}
                 className="absolute top-0 left-0 size-full object-cover
@@ -38,7 +38,7 @@ export function Project1() {
                     }
                     className="mr-8 ml-4 text-sm whitespace-nowrap"
                 >
-                    Fluence
+                    Myria
                 </motion.p>
                 <div
                     className={cn(

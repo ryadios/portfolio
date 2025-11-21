@@ -13,7 +13,7 @@ import {
 import { AboutMe } from "./tiles/about-me";
 import { cn } from "@/lib/utils";
 import { Map } from "./tiles/map";
-import { Project1 } from "./tiles/project1";
+import { Myria } from "./tiles/myria";
 import { Spotify } from "./tiles/spotify";
 import { Github } from "./tiles/github";
 import { DarkMode } from "./tiles/dark-mode";
@@ -43,7 +43,7 @@ const componentMap: Record<
 > = {
     a: () => <AboutMe />,
     b: () => <Map />,
-    c: () => <Project1 />,
+    c: () => <Myria />,
     d: ({ song }) => <Spotify song={song} />,
     e: () => <Github />,
     f: () => <DarkMode />,

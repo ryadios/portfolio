@@ -2,8 +2,8 @@
 
 import { TabKey } from "@/utils/tabs";
 import { useEffect, useRef } from "react";
-import { motion } from "framer-motion";
 import Image from "next/image";
+import { config } from "../../config";
 
 interface NavbarProps {
     tab: TabKey;
@@ -68,14 +68,19 @@ const Navbar = ({
                 width={102}
                 height={24}
             />
-            <div className="relative flex items-center justify-between bg-[rgba(0,0,0,0.04)] dark:bg-background rounded-[23px] p-[5px] dark:border-2 dark:border-[rgb(48,54,61)]">
+            <div
+                className="relative flex items-center justify-between
+                    bg-[rgba(0,0,0,0.04)] dark:bg-background rounded-[23px]
+                    p-[5px] dark:border-2 dark:border-[rgb(48,54,61)]"
+            >
                 {tabs.map(({ key, label }) => (
                     <div
                         key={key}
                         ref={(el) => {
                             tabRefs.current[key] = el;
                         }}
-                        className={`tab flex items-center h-8 px-4 rounded-[50px] transition-opacity duration-300 z-10 ${
+                        className={`tab flex items-center h-8 px-4
+                        rounded-[50px] transition-opacity duration-300 z-10 ${
                             tab !== key && "hover:opacity-50 cursor-pointer"
                         }`}
                         onClick={() => setTab(key)}
@@ -92,7 +97,11 @@ const Navbar = ({
                     }}
                 ></div>
             </div>
-            <a className="hover:opacity-50 cursor-pointer transition-opacity duration-200 contact">
+            <a
+                className="hover:opacity-50 cursor-pointer transition-opacity
+                    duration-200 contact"
+                href={`mailto:${config.email}`}
+            >
                 <p>Contact</p>
             </a>
         </nav>
