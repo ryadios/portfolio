@@ -1,7 +1,7 @@
-const tokenEndpoint = "https://accounts.spotify.com/api/token";
+const TOKEN_ENDPOINT = "https://accounts.spotify.com/api/token";
 
 export async function getAccessToken() {
-    const res = await fetch(tokenEndpoint, {
+    const res = await fetch(TOKEN_ENDPOINT, {
         method: "POST",
         headers: {
             Authorization: `Basic ${Buffer.from(

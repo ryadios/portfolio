@@ -2,7 +2,7 @@ import { getAccessToken } from "@/lib/spotify";
 import { SongData } from "@/types/track";
 import { NextResponse } from "next/server";
 
-export const revalidate = 60; // cache for 1 minute
+// export const revalidate = 60; // cache for 1 minute
 
 const nowPlayingEndpoint =
     "https://api.spotify.com/v1/me/player/currently-playing";
