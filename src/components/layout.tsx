@@ -1,12 +1,6 @@
 "use client";
 
-import Image from "next/image";
-import {
-    type CSSProperties,
-    useEffect,
-    useLayoutEffect,
-    useState,
-} from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import { Responsive, useContainerWidth } from "react-grid-layout";
 import { absoluteStrategy } from "react-grid-layout/core";
 import { cn } from "@/lib/utils";
@@ -77,41 +71,11 @@ const layoutByTab: Record<TabKey, PortfolioLayouts> = {
 const useIsomorphicLayoutEffect =
     typeof window === "undefined" ? useEffect : useLayoutEffect;
 
-const cardClassName =
-    "grid-card group visible cursor-grab overflow-hidden rounded-xl bg-card p-0 hover:shadow-[0_5px_24px_0_rgba(100,100,111,0.1)] active:cursor-grabbing dark:shadow-[inset_0_0_0_2px_rgb(48,54,61)]";
-
-function StaticMap() {
-    return <div className="size-full bg-muted" aria-hidden="true" />;
-}
-
-function StaticSpotify() {
-    return (
-        <div className="flex size-full flex-col justify-between px-10 py-9 md:px-8 md:py-7 lg:px-9.5 lg:py-8">
-            <Image
-                src="/icons/spotify.svg"
-                alt=""
-                width={72}
-                height={72}
-                className="spotify-icon h-auto"
-            />
-            <div className="relative min-h-[76px]" aria-hidden="true">
-                <div className="mb-2 h-5 w-28 rounded-md bg-muted" />
-                <div className="mb-1 h-8 w-3/4 rounded-md bg-muted" />
-                <div className="h-5 w-1/2 rounded-md bg-muted" />
-            </div>
-        </div>
-    );
-}
-
-const staticComponentMap: Record<string, () => React.ReactNode> = {
-    ...componentMap,
-    b: () => <StaticMap />,
-    d: () => <StaticSpotify />,
-};
+// TEMP MOTION TEST: coordinated first-render card entry.
+const cardEntryClass = "grid-card-enter";
 
 function Layout({ tab }: LayoutProps) {
     const [breakpoint, setBreakpoint] = useState<Breakpoint>("lg");
-    const [interactive, setInteractive] = useState(false);
     const { containerRef, mounted, width, measureWidth } = useContainerWidth({
         measureBeforeMount: true,
     });
@@ -121,10 +85,6 @@ function Layout({ tab }: LayoutProps) {
         measureWidth();
     }, [measureWidth]);
 
-    useEffect(() => {
-        setInteractive(true);
-    }, []);
-
     const currentLayout = layoutByTab[tab] ?? HomeLayouts;
     const layouts = {
         ...currentLayout,
@@ -132,29 +92,11 @@ function Layout({ tab }: LayoutProps) {
         xs: currentLayout.sm,
     };
     const activeLayout = layouts[breakpoint] ?? layouts.lg ?? [];
-    const staticCardStyle = (key: string) => {
-        const style = {} as CSSProperties & Record<string, string>;
-
-        for (const bp of Object.keys(rowHeights) as Breakpoint[]) {
-            const item = layouts[bp]?.find(
-                (layoutItem) => layoutItem.i === key,
-            );
-
-            if (!item) continue;
-
-            style[`--grid-card-column-${bp}`] =
-                `${item.x + 1} / span ${item.w}`;
-            style[`--grid-card-row-${bp}`] = `${item.y + 1} / span ${item.h}`;
-            style[`--grid-card-opacity-${bp}`] = item.disabled ? "0.4" : "1";
-        }
-
-        return style;
-    };
 
     return (
         <div className="w-screen p-0 pb-20">
             <div ref={containerRef} className="responsive w-full">
-                {interactive && mounted ? (
+                {mounted && (
                     <Responsive
                         className="w-full"
                         width={width}
@@ -173,7 +115,7 @@ function Layout({ tab }: LayoutProps) {
                         resizeConfig={{ enabled: false }}
                         positionStrategy={absoluteStrategy}
                     >
-                        {keys.map((key) => {
+                        {keys.map((key, index) => {
                             const layoutItem = activeLayout.find(
                                 (item) => item.i === key,
                             );
@@ -181,8 +123,12 @@ function Layout({ tab }: LayoutProps) {
                             return (
                                 <div
                                     key={key}
+                                    style={{
+                                        animationDelay: `${index * 32}ms`,
+                                    }}
                                     className={cn(
-                                        cardClassName,
+                                        cardEntryClass,
+                                        `grid-card group visible cursor-grab overflow-hidden rounded-xl bg-card p-0 hover:shadow-[0_5px_24px_0_rgba(100,100,111,0.1)] active:cursor-grabbing dark:shadow-[inset_0_0_0_2px_rgb(48,54,61)]`,
                                         disabled && "opacity-40",
                                     )}
                                 >
@@ -191,21 +137,6 @@ function Layout({ tab }: LayoutProps) {
                             );
                         })}
                     </Responsive>
-                ) : (
-                    <div className="static-grid">
-                        {keys.map((key) => (
-                            <div
-                                key={key}
-                                style={staticCardStyle(key)}
-                                className={cn(
-                                    cardClassName,
-                                    "static-grid-card",
-                                )}
-                            >
-                                {staticComponentMap[key]()}
-                            </div>
-                        ))}
-                    </div>
                 )}
             </div>
         </div>
