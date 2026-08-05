@@ -3,6 +3,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ConstructionBanner } from "@/components/under-construction";
 import { silka } from "./fonts";
+import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
     title: "aditya - things on internet",
@@ -29,6 +30,7 @@ export default function RootLayout({
                     )}
                     {children}
                 </ThemeProvider>
+                <Analytics/>
             </body>
         </html>
     );

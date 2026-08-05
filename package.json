@@ -12,6 +12,8 @@
         "fix": "biome check --write --unsafe ."
     },
     "dependencies": {
+        "@types/react-resizable": "^4.0.0",
+        "@vercel/analytics": "^2.0.1",
         "@vis.gl/react-maplibre": "^8.1.2",
         "clsx": "^2.1.1",
         "framer-motion": "^12.43.0",
@@ -22,6 +24,7 @@
         "react": "19.2.8",
         "react-dom": "19.2.8",
         "react-grid-layout": "^2.2.4",
+        "react-resizable": "^4.0.2",
         "tailwind-merge": "^3.6.0"
     },
     "devDependencies": {
