@@ -1,6 +1,6 @@
-import { getAccessToken } from "@/lib/spotify";
-import { SongData } from "@/types/track";
 import { NextResponse } from "next/server";
+import { getAccessToken } from "@/lib/spotify";
+import type { SongData } from "@/types/track";
 
 const nowPlayingEndpoint =
     "https://api.spotify.com/v1/me/player/currently-playing";

@@ -1,14 +1,15 @@
 export function ConstructionBanner() {
     return (
-        <div className="w-full border-b border-border bg-card">
-            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-center">
+        <div className="w-full border-border border-b bg-card">
+            <div className="mx-auto flex max-w-7xl items-center justify-center px-4 py-3 sm:px-6 lg:px-8">
                 <svg
+                    aria-hidden="true"
                     fill="#000000"
                     width="800px"
                     height="800px"
                     viewBox="0 0 24 24"
                     xmlns="http://www.w3.org/2000/svg"
-                    className="size-5 mr-2 dark:invert"
+                    className="mr-2 size-5 dark:invert"
                 >
                     <g data-name="Layer 2">
                         <g data-name="alert-circle">
@@ -19,7 +20,7 @@ export function ConstructionBanner() {
                         </g>
                     </g>
                 </svg>
-                <p className="text-sm font-medium text-foreground">
+                <p className="font-medium text-foreground text-sm">
                     This portfolio is under construction. Check back soon for
                     updates!
                 </p>

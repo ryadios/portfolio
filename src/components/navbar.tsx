@@ -1,8 +1,8 @@
 "use client";
 
-import { TabKey } from "@/utils/tabs";
-import { useEffect, useRef } from "react";
 import Image from "next/image";
+import { useEffect, useRef } from "react";
+import { TabKey } from "@/utils/tabs";
 import { config } from "../../config";
 
 interface NavbarProps {
@@ -29,7 +29,7 @@ const Navbar = ({
         { key: TabKey.Media, label: "Media" },
     ];
 
-    const tabRefs = useRef<Record<TabKey, HTMLDivElement | null>>({
+    const tabRefs = useRef<Record<TabKey, HTMLButtonElement | null>>({
         [TabKey.Home]: null,
         [TabKey.About]: null,
         [TabKey.Projects]: null,
@@ -68,28 +68,24 @@ const Navbar = ({
                 width={102}
                 height={24}
             />
-            <div
-                className="relative flex items-center justify-between
-                    bg-[rgba(0,0,0,0.04)] dark:bg-background rounded-[23px]
-                    p-[5px] dark:border-2 dark:border-[rgb(48,54,61)]"
-            >
+            <div className="relative flex items-center justify-between rounded-[23px] bg-[rgba(0,0,0,0.04)] p-[5px] dark:border-2 dark:border-[rgb(48,54,61)] dark:bg-background">
                 {tabs.map(({ key, label }) => (
-                    <div
+                    <button
+                        type="button"
                         key={key}
                         ref={(el) => {
                             tabRefs.current[key] = el;
                         }}
-                        className={`tab flex items-center h-8 px-4
-                        rounded-[50px] transition-opacity duration-300 z-10 ${
-                            tab !== key && "hover:opacity-50 cursor-pointer"
+                        className={`tab z-10 flex h-8 items-center rounded-[50px] border-0 bg-transparent px-4 transition-opacity duration-300 ${
+                            tab !== key && "cursor-pointer hover:opacity-50"
                         }`}
                         onClick={() => setTab(key)}
                     >
                         {label}
-                    </div>
+                    </button>
                 ))}
                 <div
-                    className="absolute bg-white dark:bg-muted rounded-xl h-8"
+                    className="absolute h-8 rounded-xl bg-white dark:bg-muted"
                     style={{
                         left: `${left}px`,
                         width: `${sliderWidth}px`,
@@ -98,8 +94,7 @@ const Navbar = ({
                 ></div>
             </div>
             <a
-                className="hover:opacity-50 cursor-pointer transition-opacity
-                    duration-200 contact"
+                className="contact cursor-pointer transition-opacity duration-200 hover:opacity-50"
                 href={`mailto:${config.email}`}
             >
                 <p>Contact</p>
