@@ -50,15 +50,20 @@
     --shadow-color: hsl(210, 20%, 96%);
     --shadow-2xs: 0px 8px 12px 0px hsl(210 20% 96% / 0.2);
     --shadow-xs: 0px 8px 12px 0px hsl(210 20% 96% / 0.2);
-    --shadow-sm: 0px 8px 12px 0px hsl(210 20% 96% / 0.4),
+    --shadow-sm:
+        0px 8px 12px 0px hsl(210 20% 96% / 0.4),
         0px 1px 2px -1px hsl(210 20% 96% / 0.4);
-    --shadow: 0px 8px 12px 0px hsl(210 20% 96% / 0.4),
+    --shadow:
+        0px 8px 12px 0px hsl(210 20% 96% / 0.4),
         0px 1px 2px -1px hsl(210 20% 96% / 0.4);
-    --shadow-md: 0px 8px 12px 0px hsl(210 20% 96% / 0.4),
+    --shadow-md:
+        0px 8px 12px 0px hsl(210 20% 96% / 0.4),
         0px 2px 4px -1px hsl(210 20% 96% / 0.4);
-    --shadow-lg: 0px 8px 12px 0px hsl(210 20% 96% / 0.4),
+    --shadow-lg:
+        0px 8px 12px 0px hsl(210 20% 96% / 0.4),
         0px 4px 6px -1px hsl(210 20% 96% / 0.4);
-    --shadow-xl: 0px 8px 12px 0px hsl(210 20% 96% / 0.4),
+    --shadow-xl:
+        0px 8px 12px 0px hsl(210 20% 96% / 0.4),
         0px 8px 10px -1px hsl(210 20% 96% / 0.4);
     --shadow-2xl: 0px 8px 12px 0px hsl(210 20% 96% / 1);
     --tracking-normal: 0.25px;
@@ -110,15 +115,20 @@
     --shadow-color: hsl(220, 10%, 5%);
     --shadow-2xs: 0px 8px 12px 0px hsl(220 10% 5% / 0.3);
     --shadow-xs: 0px 8px 12px 0px hsl(220 10% 5% / 0.3);
-    --shadow-sm: 0px 8px 12px 0px hsl(220 10% 5% / 0.6),
+    --shadow-sm:
+        0px 8px 12px 0px hsl(220 10% 5% / 0.6),
         0px 1px 2px -1px hsl(220 10% 5% / 0.6);
-    --shadow: 0px 8px 12px 0px hsl(220 10% 5% / 0.6),
+    --shadow:
+        0px 8px 12px 0px hsl(220 10% 5% / 0.6),
         0px 1px 2px -1px hsl(220 10% 5% / 0.6);
-    --shadow-md: 0px 8px 12px 0px hsl(220 10% 5% / 0.6),
+    --shadow-md:
+        0px 8px 12px 0px hsl(220 10% 5% / 0.6),
         0px 2px 4px -1px hsl(220 10% 5% / 0.6);
-    --shadow-lg: 0px 8px 12px 0px hsl(220 10% 5% / 0.6),
+    --shadow-lg:
+        0px 8px 12px 0px hsl(220 10% 5% / 0.6),
         0px 4px 6px -1px hsl(220 10% 5% / 0.6);
-    --shadow-xl: 0px 8px 12px 0px hsl(220 10% 5% / 0.6),
+    --shadow-xl:
+        0px 8px 12px 0px hsl(220 10% 5% / 0.6),
         0px 8px 10px -1px hsl(220 10% 5% / 0.6);
     --shadow-2xl: 0px 8px 12px 0px hsl(220 10% 5% / 1.5);
 }
@@ -227,20 +237,20 @@
 
 /* React Grid Layout placeholder */
 .react-grid-item.react-grid-placeholder {
-    background: rgb(237, 233, 233) none repeat scroll 0% 0% / auto padding-box
+    background:
+        rgb(237, 233, 233) none repeat scroll 0% 0% / auto padding-box
         border-box;
     opacity: 1;
     user-select: none;
     border-radius: 32px;
     transition: 0.5s;
-    user-select: none;
     z-index: 1;
     will-change: transform;
 }
 
 .dark .react-grid-item.react-grid-placeholder {
-    background: rgb(28, 32, 37) none repeat scroll 0% 0% / auto padding-box
-        border-box;
+    background:
+        rgb(28, 32, 37) none repeat scroll 0% 0% / auto padding-box border-box;
 }
 
 .react-grid-item {

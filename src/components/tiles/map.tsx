@@ -1,13 +1,16 @@
 "use client";
 
 import { Map as MapLibre, useMap } from "@vis.gl/react-maplibre";
-import { MinusIcon, PlusIcon } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
-import { useState, useEffect } from "react";
+import { MinusIcon, PlusIcon } from "lucide-react";
+import { setWorkerUrl } from "maplibre-gl";
+import { useEffect, useState } from "react";
 import "maplibre-gl/dist/maplibre-gl.css";
 import Image from "next/image";
-import { Button } from "../button";
 import { useTheme } from "next-themes";
+import { Button } from "../button";
+
+setWorkerUrl("https://unpkg.com/maplibre-gl@6.1.0/dist/maplibre-gl-worker.mjs");
 
 const zoomMap: Record<number, number> = {
     1: 9,
@@ -45,7 +48,7 @@ function MapControls() {
                         damping: 15,
                         delay: 0.5,
                     }}
-                    className="absolute left-3.5 bottom-3.5 size-8"
+                    className="absolute bottom-3.5 left-3.5 size-8"
                     variant="tooltip"
                     onClick={zoomOut}
                 >
@@ -78,19 +81,13 @@ function MapControls() {
 
 function Overlay() {
     return (
-        <div
-            className="size-[82px] shadow-[0_4px_12px_rgba(0,0,0,0.25)]
-                lg:size-24 rounded-full absolute inset-1/2 -translate-x-1/2
-                -translate-y-1/2 bg-[#98d0ff80] flex items-center justify-center
-                pointer-events-none border-4 border-white group-hover:scale-110
-                transition-all duration-500"
-        >
+        <div className="pointer-events-none absolute inset-1/2 flex size-[82px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-4 border-white bg-[#98d0ff80] shadow-[0_4px_12px_rgba(0,0,0,0.25)] transition-all duration-500 group-hover:scale-110 lg:size-24">
             <Image src="/images/cat.png" alt="User" width={50} height={50} />
         </div>
     );
 }
 
-export function Map() {
+export function MapTile() {
     const { theme } = useTheme();
 
     const mapId =
@@ -103,7 +100,7 @@ export function Map() {
         `https://api.maptiler.com/maps/${id}/style.json?key=${key}`;
 
     return (
-        <div className="relative w-full h-full overflow-hidden rounded-[14px]">
+        <div className="relative h-full w-full overflow-hidden rounded-[14px]">
             <AnimatePresence mode="wait">
                 <motion.div
                     key={mapId}
