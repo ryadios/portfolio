@@ -10,7 +10,7 @@ export const moranga = localFont({
     ],
     variable: "--font-moranga",
     display: "swap",
-    preload: false,
+    preload: true,
 });
 
 export const silka = localFont({

@@ -1,7 +1,11 @@
 "use client";
 
-import { useEffect, useLayoutEffect, useState } from "react";
-import { Responsive, useContainerWidth } from "react-grid-layout";
+import { useEffect, useLayoutEffect } from "react";
+import {
+    getBreakpointFromWidth,
+    Responsive,
+    useContainerWidth,
+} from "react-grid-layout";
 import { absoluteStrategy } from "react-grid-layout/core";
 import { cn } from "@/lib/utils";
 import {
@@ -71,16 +75,15 @@ const layoutByTab: Record<TabKey, PortfolioLayouts> = {
 const useIsomorphicLayoutEffect =
     typeof window === "undefined" ? useEffect : useLayoutEffect;
 
-// TEMP MOTION TEST: coordinated first-render card entry.
 const cardEntryClass = "grid-card-enter";
 
 function Layout({ tab }: LayoutProps) {
-    const [breakpoint, setBreakpoint] = useState<Breakpoint>("lg");
     const { containerRef, mounted, width, measureWidth } = useContainerWidth({
         measureBeforeMount: true,
     });
 
-    // TEMP PERF TEST: measure before paint to remove the blank first frame.
+    const breakpoint = getBreakpointFromWidth(breakpoints, width) as Breakpoint;
+
     useIsomorphicLayoutEffect(() => {
         measureWidth();
     }, [measureWidth]);
@@ -105,9 +108,6 @@ function Layout({ tab }: LayoutProps) {
                         margin={[16, 16]}
                         rowHeight={rowHeights[breakpoint]}
                         layouts={layouts}
-                        onBreakpointChange={(bp) =>
-                            setBreakpoint(bp as Breakpoint)
-                        }
                         dragConfig={{
                             enabled: breakpoint !== "xs" && breakpoint !== "sm",
                             cancel: ".no-drag",

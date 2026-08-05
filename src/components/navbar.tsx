@@ -38,7 +38,6 @@ const Navbar = ({
         [TabKey.Media]: null,
     });
 
-    // TEMP UX TEST: position the indicator before the first paint.
     useIsomorphicLayoutEffect(() => {
         const calculateSliderPosition = () => {
             const currentTabRef = tabRefs.current[tab];
@@ -71,6 +70,7 @@ const Navbar = ({
                 width={256}
                 height={112}
                 loading="eager"
+                fetchPriority="high"
                 sizes="102px"
                 className="h-auto w-25.5"
             />
