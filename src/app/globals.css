@@ -258,7 +258,7 @@
 }
 
 .react-grid-item {
-    --grid-card-state-duration: 200ms;
+    --grid-card-state-duration: 300ms;
     transition:
         left 0.5s ease,
         top 0.5s ease,
