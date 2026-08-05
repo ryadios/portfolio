@@ -1,5 +1,4 @@
 @import "tailwindcss";
-@import "tw-animate-css";
 @import "../../node_modules/react-grid-layout/css/styles.css";
 @import "../../node_modules/react-resizable/css/styles.css";
 
@@ -209,30 +208,35 @@
     }
 }
 
-/* Animations */
-@keyframes bar {
+/* Spotify playback indicator */
+@keyframes spotify-indicator {
     0%,
     100% {
-        height: 20%;
+        transform: scaleY(0.25);
     }
     50% {
-        height: 60%;
+        transform: scaleY(1);
     }
 }
 
-@layer utilities {
-    .animate-bar1 {
-        animation: bar 0.85s ease-in-out infinite;
-        transform-origin: center;
-    }
-    .animate-bar2 {
-        animation: bar 1.26s ease-in-out infinite;
-        transform-origin: center;
-    }
-    .animate-bar3 {
-        animation: bar 0.62s ease-in-out infinite;
-        transform-origin: center;
-    }
+.spotify-indicator-bar {
+    display: block;
+    flex: 0 0 3px;
+    width: 3px;
+    height: 12px;
+    margin-right: 3px;
+    border-radius: 1.5px;
+    background: rgb(110, 210, 183);
+    transform-origin: center;
+    animation: spotify-indicator 0.85s ease-in-out infinite;
+}
+
+.spotify-indicator-bar-2 {
+    animation-duration: 1.26s;
+}
+
+.spotify-indicator-bar-3 {
+    animation-duration: 0.62s;
 }
 
 /* React Grid Layout placeholder */
@@ -254,8 +258,40 @@
 }
 
 .react-grid-item {
-    transition: all 0.5s ease;
+    --grid-card-state-duration: 200ms;
+    transition:
+        left 0.5s ease,
+        top 0.5s ease,
+        width 0.5s ease,
+        height 0.5s ease,
+        opacity var(--grid-card-state-duration) cubic-bezier(0.23, 1, 0.32, 1),
+        box-shadow var(--grid-card-state-duration)
+        cubic-bezier(0.23, 1, 0.32, 1);
     z-index: 2;
+}
+
+/* TEMP MOTION TEST: coordinated first-render card entry. */
+@keyframes grid-card-enter {
+    from {
+        transform: translateY(8px) scale(0.985);
+    }
+    to {
+        transform: translateY(0) scale(1);
+    }
+}
+
+.grid-card-enter {
+    animation: grid-card-enter 240ms cubic-bezier(0.23, 1, 0.32, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .grid-card {
+        --grid-card-state-duration: 120ms;
+    }
+
+    .grid-card-enter {
+        animation: none;
+    }
 }
 
 /* Spotify */
@@ -317,6 +353,12 @@
     padding: 0 3.5vw;
 }
 
+.nav-socials {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
 @media (max-width: 600px) {
     .responsive-nav {
         flex-direction: column;
@@ -328,12 +370,81 @@
         margin: 36px 0 24px;
     }
 
-    .responsive-nav .contact {
+    .responsive-nav .nav-socials {
         display: none;
     }
 }
 
-img {
-    overflow-clip-margin: content-box;
-    overflow: clip;
+.nav-tab,
+.nav-social {
+    transition:
+        color 150ms cubic-bezier(0.23, 1, 0.32, 1),
+        background-color 150ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.nav-tab:focus-visible,
+.nav-social:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
+}
+
+.nav-social {
+    display: flex;
+    width: 24px;
+    height: 24px;
+    align-items: center;
+    justify-content: center;
+    color: rgb(0 0 0 / 0.58);
+}
+
+.dark .nav-social {
+    color: rgb(255 255 255 / 0.58);
+}
+
+.nav-social-icon {
+    display: block;
+    width: 17px;
+    height: 17px;
+    background-color: currentColor;
+    mask-position: center;
+    mask-repeat: no-repeat;
+    mask-size: contain;
+    -webkit-mask-position: center;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-size: contain;
+}
+
+.nav-social-icon-x {
+    mask-image: url("/icons/x.svg");
+    -webkit-mask-image: url("/icons/x.svg");
+}
+
+.nav-social-icon-linkedin {
+    mask-image: url("/icons/linkedin.svg");
+    -webkit-mask-image: url("/icons/linkedin.svg");
+}
+
+.nav-social-icon-github {
+    width: 18px;
+    height: 18px;
+    mask-image: url("/icons/github-social.svg");
+    -webkit-mask-image: url("/icons/github-social.svg");
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .nav-tab:not([aria-pressed="true"]):hover {
+        background-color: rgb(0 0 0 / 0.04);
+    }
+
+    .dark .nav-tab:not([aria-pressed="true"]):hover {
+        background-color: rgb(255 255 255 / 0.06);
+    }
+
+    .nav-social:hover {
+        color: rgb(0 0 0 / 0.9);
+    }
+
+    .dark .nav-social:hover {
+        color: rgb(255 255 255 / 0.9);
+    }
 }
