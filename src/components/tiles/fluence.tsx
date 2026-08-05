@@ -20,8 +20,9 @@ export function Fluence() {
             <Image
                 src="/images/fluence.png"
                 alt="fluence"
-                width={1161}
-                height={564}
+                width={1920}
+                height={1080}
+                sizes="(max-width: 799px) 100vw, 50vw"
                 className="absolute top-0 left-0 size-full object-cover transition-transform duration-800 group-hover:scale-105"
             />
             <Tooltip hovered={hovered} href={config.projects.fluence}>

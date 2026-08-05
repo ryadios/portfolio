@@ -19,8 +19,9 @@ export function Myria() {
             <Image
                 src="/images/myria.png"
                 alt="myria"
-                width={564}
-                height={1161}
+                width={1080}
+                height={1920}
+                sizes="(max-width: 799px) 50vw, (max-width: 1200px) 25vw, 300px"
                 className="absolute top-0 left-0 size-full object-cover transition-transform duration-800 group-hover:scale-105"
             />
             <Tooltip hovered={hovered}>

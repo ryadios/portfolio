@@ -12,6 +12,7 @@ export function AboutMe() {
                     className="size-[50px] max-h-32 sm:size-[100px]"
                     width={100}
                     height={100}
+                    sizes="(max-width: 374px) 50px, 100px"
                 />
             </div>
             <p className="text-[13px] leading-6 sm:text-sm sm:leading-6.5">

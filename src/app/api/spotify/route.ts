@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
-import { getAccessToken } from "@/lib/spotify";
-import type { SongData } from "@/types/track";
+import { fallbackTrack, getAccessToken } from "@/lib/spotify";
 
 const nowPlayingEndpoint =
     "https://api.spotify.com/v1/me/player/currently-playing";
@@ -14,12 +13,6 @@ interface SpotifyTrack {
     artists: SpotifyArtist[];
 }
 
-const lastTrack: SongData = {
-    status: "Offline. Last Played",
-    song: "Avid",
-    artist: "SawanoHiroyuki[nZk], mizuki",
-};
-
 export async function GET() {
     try {
         const token = await getAccessToken();
@@ -29,13 +22,13 @@ export async function GET() {
         });
 
         if (res.status === 204 || res.status >= 400)
-            return NextResponse.json(lastTrack);
+            return NextResponse.json(fallbackTrack);
 
         const data = await res.json();
         const track: SpotifyTrack | undefined = data?.item;
 
         if (res.status === 204 || res.status >= 400 || !track)
-            return NextResponse.json(lastTrack);
+            return NextResponse.json(fallbackTrack);
 
         return NextResponse.json({
             status: "Now Playing",
@@ -47,6 +40,6 @@ export async function GET() {
         });
     } catch (err) {
         console.error(err);
-        return NextResponse.json(lastTrack, { status: 500 });
+        return NextResponse.json(fallbackTrack, { status: 500 });
     }
 }
