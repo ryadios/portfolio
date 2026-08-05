@@ -5,8 +5,9 @@ import { ConstructionBanner } from "@/components/under-construction";
 import { silka } from "./fonts";
 
 export const metadata: Metadata = {
-    title: "Aditya — Developer, Designer",
-    description: "Love creating awesome stuff!",
+    title: "aditya - things on internet",
+    description:
+        "a little bit of design, a little bit of code, a lot of tabs open.",
 };
 
 export default function RootLayout({

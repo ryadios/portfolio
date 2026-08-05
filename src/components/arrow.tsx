@@ -7,7 +7,7 @@ export function Arrow(
         <Image
             {...props}
             src="/icons/arrow.svg"
-            alt="arrow"
+            alt=""
             width={18.25}
             height={18.25}
             className="dark:invert"

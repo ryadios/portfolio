@@ -9,7 +9,7 @@ export interface ButtonProps extends HTMLMotionProps<"button"> {
 }
 
 const buttonVariants = {
-    base: "no-drag transition-shadow duration-200 ease-out cursor-pointer",
+    base: "no-drag cursor-pointer transition-[box-shadow,transform] duration-[150ms] [transition-timing-function:cubic-bezier(0.23,1,0.32,1)] active:scale-[0.98] motion-reduce:duration-[100ms] motion-reduce:active:scale-[0.99]",
     default:
         "h-9 px-3 rounded-xl text-sm [box-shadow:0_0_0_2px_rgb(240,242,248)] hover:[box-shadow:0_0_0_5px_rgb(240,242,248)] dark:shadow-[0_0_0_2px_rgb(48,54,61)] dark:hover:shadow-[0_0_0_5px_rgb(48,54,61)]",
     tooltip:

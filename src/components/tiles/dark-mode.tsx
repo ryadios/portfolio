@@ -4,28 +4,27 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useTheme } from "next-themes";
 
 export function DarkMode() {
-    const { theme, setTheme } = useTheme();
+    const { resolvedTheme, setTheme } = useTheme();
+    const isDark = resolvedTheme === "dark";
 
     // Delay the exit animation: when transitioning away from a theme,
     // the exiting icon waits 0.25s before animating out
-    const moonDelay = theme === "dark" ? 0.25 : 0; // moon exits when switching to dark
-    const sunDelay = theme === "light" ? 0.25 : 0; // sun exits when switching to light
+    const moonDelay = isDark ? 0.25 : 0; // moon exits when switching to dark
+    const sunDelay = isDark ? 0 : 0.25; // sun exits when switching to light
 
     return (
         <div className="flex size-full items-center justify-center">
             <button
                 type="button"
                 aria-label="Toggle color theme"
-                aria-pressed={theme === "dark"}
+                aria-pressed={isDark}
                 className="no-drag relative flex h-12 w-20 cursor-pointer items-center rounded-[40px] border-0 bg-[#f0f2f8] dark:bg-muted dark:shadow-[inset_0_0_0_2px_rgb(48,54,61)]"
-                onClick={() =>
-                    theme === "light" ? setTheme("dark") : setTheme("light")
-                }
+                onClick={() => setTheme(isDark ? "light" : "dark")}
             >
                 <motion.div
                     initial={false}
                     animate={{
-                        x: theme === "dark" ? 38 : 6,
+                        x: isDark ? 38 : 6,
                     }}
                     transition={{
                         type: "spring",
@@ -38,7 +37,7 @@ export function DarkMode() {
                     className="flex size-9 items-center justify-center rounded-[30px] bg-[#0d1117]"
                 >
                     <AnimatePresence mode="wait">
-                        {theme === "light" ? (
+                        {!isDark ? (
                             <motion.svg
                                 key="moon"
                                 initial={{ rotate: -90, scale: 0, opacity: 0 }}

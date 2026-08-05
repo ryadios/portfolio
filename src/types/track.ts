@@ -3,3 +3,8 @@ export type SongData = {
     song: string;
     artist: string;
 };
+
+export type SpotifyResponse =
+    | { state: "last_played"; track: SongData }
+    | { state: "empty" }
+    | { state: "unavailable" };

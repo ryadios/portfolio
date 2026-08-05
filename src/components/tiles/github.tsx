@@ -13,7 +13,12 @@ export function Github() {
                 height={48}
                 className="github-icon"
             />
-            <Tooltip className="size-8" href={config.github} target="_blank">
+            <Tooltip
+                className="size-8"
+                href={config.github}
+                target="_blank"
+                aria-label="Open GitHub profile"
+            >
                 <Arrow />
             </Tooltip>
         </div>
