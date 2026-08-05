@@ -1,4 +1,12 @@
+import type { SongData } from "@/types/track";
+
 const TOKEN_ENDPOINT = "https://accounts.spotify.com/api/token";
+
+export const fallbackTrack: SongData = {
+    status: "Offline. Last Played",
+    song: "Avid",
+    artist: "SawanoHiroyuki[nZk], mizuki",
+};
 
 export async function getAccessToken() {
     const res = await fetch(TOKEN_ENDPOINT, {

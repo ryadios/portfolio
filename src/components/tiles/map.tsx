@@ -82,7 +82,13 @@ function MapControls() {
 function Overlay() {
     return (
         <div className="pointer-events-none absolute inset-1/2 flex size-[82px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-4 border-white bg-[#98d0ff80] shadow-[0_4px_12px_rgba(0,0,0,0.25)] transition-all duration-500 group-hover:scale-110 lg:size-24">
-            <Image src="/images/cat.png" alt="User" width={50} height={50} />
+            <Image
+                src="/images/cat.png"
+                alt="User"
+                width={50}
+                height={50}
+                sizes="50px"
+            />
         </div>
     );
 }

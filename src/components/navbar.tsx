@@ -65,8 +65,11 @@ const Navbar = ({
             <Image
                 src="/images/ryadi.png"
                 alt="ryadi"
-                width={102}
-                height={24}
+                width={1024}
+                height={446}
+                loading="eager"
+                sizes="102px"
+                className="h-auto w-[102px]"
             />
             <div className="relative flex items-center justify-between rounded-[23px] bg-[rgba(0,0,0,0.04)] p-[5px] dark:border-2 dark:border-[rgb(48,54,61)] dark:bg-background">
                 {tabs.map(({ key, label }) => (
