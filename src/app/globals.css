@@ -270,7 +270,6 @@
     z-index: 2;
 }
 
-/* TEMP MOTION TEST: coordinated first-render card entry. */
 @keyframes grid-card-enter {
     from {
         transform: translateY(8px) scale(0.985);
@@ -403,8 +402,8 @@
 
 .nav-social-icon {
     display: block;
-    width: 17px;
-    height: 17px;
+    width: 18px;
+    height: 18px;
     background-color: currentColor;
     mask-position: center;
     mask-repeat: no-repeat;
@@ -415,18 +414,19 @@
 }
 
 .nav-social-icon-x {
+    transform: scale(0.94);
     mask-image: url("/icons/x.svg");
     -webkit-mask-image: url("/icons/x.svg");
 }
 
 .nav-social-icon-linkedin {
+    transform: scale(1.08);
     mask-image: url("/icons/linkedin.svg");
     -webkit-mask-image: url("/icons/linkedin.svg");
 }
 
 .nav-social-icon-github {
-    width: 18px;
-    height: 18px;
+    transform: scale(1.04);
     mask-image: url("/icons/github-social.svg");
     -webkit-mask-image: url("/icons/github-social.svg");
 }
