@@ -1,8 +1,8 @@
 "use client";
 
+import { type HTMLMotionProps, motion } from "framer-motion";
 import * as React from "react";
 import { cn } from "@/lib/utils";
-import { HTMLMotionProps, motion } from "framer-motion";
 
 export interface ButtonProps extends HTMLMotionProps<"button"> {
     variant?: "default" | "tooltip";
@@ -24,14 +24,14 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
                 className={cn(
                     buttonVariants.base,
                     buttonVariants[variant],
-                    className
+                    className,
                 )}
                 {...props}
             >
                 {children}
             </motion.button>
         );
-    }
+    },
 );
 
 Button.displayName = "Button";

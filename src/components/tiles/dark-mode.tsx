@@ -1,7 +1,7 @@
 "use client";
 
-import { useTheme } from "next-themes";
 import { AnimatePresence, motion } from "framer-motion";
+import { useTheme } from "next-themes";
 
 export function DarkMode() {
     const { theme, setTheme } = useTheme();
@@ -12,11 +12,12 @@ export function DarkMode() {
     const sunDelay = theme === "light" ? 0.25 : 0; // sun exits when switching to light
 
     return (
-        <div className="size-full flex justify-center items-center">
-            <div
-                className="no-drag w-20 h-12 flex items-center rounded-[40px]
-                    relative bg-[#f0f2f8] dark:bg-muted
-                    dark:shadow-[inset_0_0_0_2px_rgb(48,54,61)] cursor-pointer"
+        <div className="flex size-full items-center justify-center">
+            <button
+                type="button"
+                aria-label="Toggle color theme"
+                aria-pressed={theme === "dark"}
+                className="no-drag relative flex h-12 w-20 cursor-pointer items-center rounded-[40px] border-0 bg-[#f0f2f8] dark:bg-muted dark:shadow-[inset_0_0_0_2px_rgb(48,54,61)]"
                 onClick={() =>
                     theme === "light" ? setTheme("dark") : setTheme("light")
                 }
@@ -34,8 +35,7 @@ export function DarkMode() {
                         ease: [0.65, 0.05, 0.36, 1],
                         duration: 0.55,
                     }}
-                    className="size-9 rounded-[30px] flex items-center
-                        justify-center bg-[#0d1117]"
+                    className="flex size-9 items-center justify-center rounded-[30px] bg-[#0d1117]"
                 >
                     <AnimatePresence mode="wait">
                         {theme === "light" ? (
@@ -102,7 +102,7 @@ export function DarkMode() {
                         )}
                     </AnimatePresence>
                 </motion.div>
-            </div>
+            </button>
         </div>
     );
 }

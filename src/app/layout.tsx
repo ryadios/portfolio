@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { silka } from "./fonts";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ConstructionBanner } from "@/components/under-construction";
+import { silka } from "./fonts";
 
 export const metadata: Metadata = {
     title: "Aditya — Developer, Designer",
@@ -16,7 +16,7 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en" suppressHydrationWarning>
-            <body className={`${silka.className} antialiased select-none`}>
+            <body className={`${silka.className} select-none antialiased`}>
                 <ThemeProvider
                     attribute="class"
                     defaultTheme="light"

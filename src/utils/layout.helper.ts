@@ -1,8 +1,14 @@
-import type { Layouts } from "react-grid-layout";
+import type { LayoutItem } from "react-grid-layout";
 
 export const keys = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"];
 
-export const HomeLayouts: Layouts = {
+export type GridBreakpoint = "xl" | "lg" | "md" | "sm" | "xs";
+type PortfolioLayoutItem = LayoutItem & { disabled?: boolean };
+export type PortfolioLayouts = Partial<
+    Record<GridBreakpoint, readonly PortfolioLayoutItem[]>
+>;
+
+export const HomeLayouts: PortfolioLayouts = {
     lg: [
         { i: "a", x: 0, y: 0, w: 2, h: 1 },
         { i: "b", x: 2, y: 0, w: 1, h: 1 },
@@ -41,7 +47,7 @@ export const HomeLayouts: Layouts = {
     ],
 };
 
-export const AboutLayouts: Layouts = {
+export const AboutLayouts: PortfolioLayouts = {
     lg: [
         { i: "a", x: 0, y: 0, w: 2, h: 1 },
         { i: "b", x: 2, y: 0, w: 1, h: 1 },
@@ -80,7 +86,7 @@ export const AboutLayouts: Layouts = {
     ],
 };
 
-export const ProjectLayouts: Layouts = {
+export const ProjectLayouts: PortfolioLayouts = {
     lg: [
         { i: "a", x: 0, y: 1, w: 2, h: 1, disabled: true },
         { i: "b", x: 2, y: 1, w: 1, h: 1, disabled: true },
@@ -119,7 +125,7 @@ export const ProjectLayouts: Layouts = {
     ],
 };
 
-export const MediaLayouts: Layouts = {
+export const MediaLayouts: PortfolioLayouts = {
     lg: [
         { i: "a", x: 0, y: 3, w: 2, h: 1, disabled: true },
         { i: "b", x: 1, y: 1, w: 1, h: 1, disabled: true },

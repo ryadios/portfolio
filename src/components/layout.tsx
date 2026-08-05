@@ -1,27 +1,29 @@
 "use client";
 
+import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useMemo, useState } from "react";
-import { Responsive, WidthProvider } from "react-grid-layout";
-import { TabKey } from "@/utils/tabs";
+import { Responsive, useContainerWidth } from "react-grid-layout";
+import { absoluteStrategy } from "react-grid-layout/core";
+import { cn } from "@/lib/utils";
 import {
     AboutLayouts,
     HomeLayouts,
-    MediaLayouts,
-    ProjectLayouts,
     keys,
+    MediaLayouts,
+    type PortfolioLayouts,
+    ProjectLayouts,
 } from "@/utils/layout.helper";
+import { TabKey } from "@/utils/tabs";
 import { AboutMe } from "./tiles/about-me";
-import { cn } from "@/lib/utils";
-import { Map } from "./tiles/map";
-import { Myria } from "./tiles/myria";
-import { Spotify } from "./tiles/spotify";
-import { Github } from "./tiles/github";
-import { DarkMode } from "./tiles/dark-mode";
 import { Blog } from "./tiles/blog";
+import { DarkMode } from "./tiles/dark-mode";
 import { Empress } from "./tiles/empress";
 import { Fluence } from "./tiles/fluence";
+import { Github } from "./tiles/github";
+import { MapTile } from "./tiles/map";
+import { Myria } from "./tiles/myria";
 import { Newsletter } from "./tiles/newsletter";
-import { motion, AnimatePresence } from "framer-motion";
+import { Spotify } from "./tiles/spotify";
 
 type SongData = {
     status: string;
@@ -42,7 +44,7 @@ const componentMap: Record<
     (props: { song: SongData }) => React.ReactNode
 > = {
     a: () => <AboutMe />,
-    b: () => <Map />,
+    b: () => <MapTile />,
     c: () => <Myria />,
     d: ({ song }) => <Spotify song={song} />,
     e: () => <Github />,
@@ -54,6 +56,7 @@ const componentMap: Record<
 };
 
 const rowHeights = {
+    xl: 280,
     lg: 280,
     md: 180,
     sm: 164,
@@ -62,12 +65,23 @@ const rowHeights = {
 
 type Breakpoint = keyof typeof rowHeights;
 
-function Layout({ tab, song }: LayoutProps) {
-    const [currentlayout, setCurrentLayout] = useState(HomeLayouts);
-    const [breakpoint, setBreakpoint] = useState<Breakpoint>("lg");
-    const [mounted, setMounted] = useState(false);
+const breakpoints = {
+    xl: 1200,
+    lg: 800,
+    md: 375,
+    sm: 324,
+    xs: 0,
+} as const;
 
-    useEffect(() => setMounted(true), []);
+const cols = { xl: 4, lg: 4, md: 4, sm: 2, xs: 2 } as const;
+
+function Layout({ tab, song }: LayoutProps) {
+    const [currentLayout, setCurrentLayout] =
+        useState<PortfolioLayouts>(HomeLayouts);
+    const [breakpoint, setBreakpoint] = useState<Breakpoint>("lg");
+    const { containerRef, mounted, width } = useContainerWidth({
+        measureBeforeMount: true,
+    });
 
     useEffect(() => {
         switch (tab) {
@@ -88,16 +102,19 @@ function Layout({ tab, song }: LayoutProps) {
         }
     }, [tab]);
 
-    const ResponsiveReactGridLayout = useMemo(
-        () => WidthProvider(Responsive),
-        []
+    const layouts = useMemo(
+        () => ({
+            ...currentLayout,
+            xl: currentLayout.lg,
+            xs: currentLayout.sm,
+        }),
+        [currentLayout],
     );
-    const activeLayout = currentlayout[breakpoint] || currentlayout.lg;
-    const rowHeight = rowHeights[breakpoint] || 180;
+    const activeLayout = layouts[breakpoint] ?? layouts.lg ?? [];
 
     return (
         <AnimatePresence>
-            {song && mounted && (
+            {song && (
                 <motion.div
                     className="w-screen p-0 pb-20"
                     key="grid"
@@ -108,53 +125,48 @@ function Layout({ tab, song }: LayoutProps) {
                         ease: "easeOut",
                     }}
                 >
-                    <div className="w-full responsive">
-                        <ResponsiveReactGridLayout
-                            className={"w-full"}
-                            breakpoints={{
-                                xl: 1200,
-                                lg: 800,
-                                md: 375,
-                                sm: 324,
-                                xs: 0,
-                            }}
-                            cols={{ xl: 4, lg: 4, md: 4, sm: 2, xs: 2 }}
-                            margin={[16, 16]}
-                            rowHeight={rowHeight}
-                            layouts={currentlayout}
-                            onBreakpointChange={(bp) =>
-                                setBreakpoint(bp as Breakpoint)
-                            }
-                            isResizable={false}
-                            isDraggable={
-                                breakpoint !== "xs" && breakpoint !== "sm"
-                            }
-                            useCSSTransforms={false}
-                            draggableCancel=".no-drag"
-                        >
-                            {keys.map((key) => {
-                                const layoutItem = activeLayout.find(
-                                    (item) => item.i === key
-                                );
-                                const disabled = layoutItem?.disabled ?? false;
-                                return (
-                                    <div
-                                        key={key}
-                                        className={cn(
-                                            `rounded-xl p-0 bg-card visible
-                                            cursor-grab active:cursor-grabbing
-                                            overflow-hidden
-                                            hover:shadow-[0_5px_24px_0_rgba(100,100,111,0.1)]
-                                            dark:shadow-[inset_0_0_0_2px_rgb(48,54,61)]
-                                            group`,
-                                            disabled && "opacity-40"
-                                        )}
-                                    >
-                                        {componentMap[key]({ song })}
-                                    </div>
-                                );
-                            })}
-                        </ResponsiveReactGridLayout>
+                    <div ref={containerRef} className="responsive w-full">
+                        {mounted && (
+                            <Responsive
+                                className="w-full"
+                                width={width}
+                                breakpoints={breakpoints}
+                                cols={cols}
+                                margin={[16, 16]}
+                                rowHeight={rowHeights[breakpoint]}
+                                layouts={layouts}
+                                onBreakpointChange={(bp) =>
+                                    setBreakpoint(bp as Breakpoint)
+                                }
+                                dragConfig={{
+                                    enabled:
+                                        breakpoint !== "xs" &&
+                                        breakpoint !== "sm",
+                                    cancel: ".no-drag",
+                                }}
+                                resizeConfig={{ enabled: false }}
+                                positionStrategy={absoluteStrategy}
+                            >
+                                {keys.map((key) => {
+                                    const layoutItem = activeLayout.find(
+                                        (item) => item.i === key,
+                                    );
+                                    const disabled =
+                                        layoutItem?.disabled ?? false;
+                                    return (
+                                        <div
+                                            key={key}
+                                            className={cn(
+                                                `group visible cursor-grab overflow-hidden rounded-xl bg-card p-0 hover:shadow-[0_5px_24px_0_rgba(100,100,111,0.1)] active:cursor-grabbing dark:shadow-[inset_0_0_0_2px_rgb(48,54,61)]`,
+                                                disabled && "opacity-40",
+                                            )}
+                                        >
+                                            {componentMap[key]({ song })}
+                                        </div>
+                                    );
+                                })}
+                            </Responsive>
+                        )}
                     </div>
                 </motion.div>
             )}

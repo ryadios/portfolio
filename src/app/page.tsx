@@ -2,7 +2,7 @@ export const dynamic = "force-dynamic";
 
 import { Main } from "@/components/main";
 import { getAccessToken } from "@/lib/spotify";
-import { SongData } from "@/types/track";
+import type { SongData } from "@/types/track";
 
 const nowPlayingEndpoint =
     "https://api.spotify.com/v1/me/player/currently-playing";
@@ -30,14 +30,12 @@ async function getSpotifyData(): Promise<SongData> {
             cache: "no-store",
         });
 
-        if (res.status === 204 || res.status >= 400)
-            return lastTrack;
+        if (res.status === 204 || res.status >= 400) return lastTrack;
 
         const data = await res.json();
         const track: SpotifyTrack | undefined = data?.item;
 
-        if (res.status === 204 || res.status >= 400 || !track)
-            return lastTrack;
+        if (res.status === 204 || res.status >= 400 || !track) return lastTrack;
 
         return {
             status: "Now Playing",

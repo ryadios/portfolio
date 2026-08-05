@@ -1,7 +1,7 @@
-import Image, { ImageProps } from "next/image";
+import Image, { type ImageProps } from "next/image";
 
 export function Arrow(
-    props: Omit<ImageProps, "src" | "alt" | "width" | "height">
+    props: Omit<ImageProps, "src" | "alt" | "width" | "height">,
 ) {
     return (
         <Image

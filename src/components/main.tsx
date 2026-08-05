@@ -1,10 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import Navbar from "./navbar";
+import type { SongData } from "@/types/track";
 import { TabKey } from "@/utils/tabs";
 import Layout from "./layout";
-import { SongData } from "@/types/track";
+import Navbar from "./navbar";
 
 export function Main({ song }: { song: SongData }) {
     const [tab, setTab] = useState<TabKey>(TabKey.Home);

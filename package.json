@@ -1,40 +1,38 @@
 {
-  "name": "portfolio",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "eslint"
-  },
-  "dependencies": {
-    "@types/react-grid-layout": "^1.3.5",
-    "@vis.gl/react-maplibre": "^8.1.0",
-    "class-variance-authority": "^0.7.1",
-    "clsx": "^2.1.1",
-    "framer-motion": "^12.23.24",
-    "lucide-react": "^0.548.0",
-    "maplibre-gl": "^5.10.0",
-    "next": "16.0.10",
-    "next-themes": "^0.4.6",
-    "react": "19.2.0",
-    "react-dom": "19.2.0",
-    "react-grid-layout": "^1.5.2",
-    "tailwind-merge": "^3.3.1"
-  },
-  "devDependencies": {
-    "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "eslint": "^9",
-    "eslint-config-next": "16.0.1",
-    "prettier": "^3.6.2",
-    "prettier-plugin-classnames": "^0.8.5",
-    "prettier-plugin-tailwindcss": "^0.7.1",
-    "tailwindcss": "^4",
-    "tw-animate-css": "^1.4.0",
-    "typescript": "^5"
-  }
+    "name": "portfolio",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "lint": "biome lint .",
+        "format": "biome format --write .",
+        "check": "biome check .",
+        "fix": "biome check --write --unsafe ."
+    },
+    "dependencies": {
+        "@vis.gl/react-maplibre": "^8.1.2",
+        "class-variance-authority": "^0.7.1",
+        "clsx": "^2.1.1",
+        "framer-motion": "^12.43.0",
+        "lucide-react": "^1.28.0",
+        "maplibre-gl": "^6.1.0",
+        "next": "16.3.0",
+        "next-themes": "^0.4.6",
+        "react": "19.2.8",
+        "react-dom": "19.2.8",
+        "react-grid-layout": "^2.2.4",
+        "tailwind-merge": "^3.6.0"
+    },
+    "devDependencies": {
+        "@tailwindcss/postcss": "^4",
+        "@biomejs/biome": "^2.4.4",
+        "@types/node": "^26",
+        "@types/react": "^19",
+        "@types/react-dom": "^19",
+        "tailwindcss": "^4",
+        "tw-animate-css": "^1.4.0",
+        "typescript": "^7"
+    }
 }
