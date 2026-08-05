@@ -1,9 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef } from "react";
 import { TabKey } from "@/utils/tabs";
-import { config } from "../../config";
 
 interface NavbarProps {
     tab: TabKey;
@@ -13,6 +12,9 @@ interface NavbarProps {
     setX: (x: number) => void;
     setW: (w: number) => void;
 }
+
+const useIsomorphicLayoutEffect =
+    typeof window === "undefined" ? useEffect : useLayoutEffect;
 
 const Navbar = ({
     tab,
@@ -36,7 +38,8 @@ const Navbar = ({
         [TabKey.Media]: null,
     });
 
-    useEffect(() => {
+    // TEMP UX TEST: position the indicator before the first paint.
+    useIsomorphicLayoutEffect(() => {
         const calculateSliderPosition = () => {
             const currentTabRef = tabRefs.current[tab];
 
@@ -63,15 +66,15 @@ const Navbar = ({
     return (
         <nav className="responsive-nav font-medium text-sm">
             <Image
-                src="/images/ryadi.png"
+                src="/images/ryadi.webp"
                 alt="ryadi"
-                width={1024}
-                height={446}
+                width={256}
+                height={112}
                 loading="eager"
                 sizes="102px"
-                className="h-auto w-[102px]"
+                className="h-auto w-25.5"
             />
-            <div className="relative flex items-center justify-between rounded-[23px] bg-[rgba(0,0,0,0.04)] p-[5px] dark:border-2 dark:border-[rgb(48,54,61)] dark:bg-background">
+            <div className="relative flex items-center justify-between rounded-[23px] bg-[rgba(0,0,0,0.04)] p-1.25 dark:border-2 dark:border-[rgb(48,54,61)] dark:bg-background">
                 {tabs.map(({ key, label }) => (
                     <button
                         type="button"
@@ -80,8 +83,8 @@ const Navbar = ({
                         ref={(el) => {
                             tabRefs.current[key] = el;
                         }}
-                        className={`tab z-10 flex h-8 items-center rounded-[50px] border-0 bg-transparent px-4 transition-opacity duration-300 ${
-                            tab !== key && "cursor-pointer hover:opacity-50"
+                        className={`nav-tab tab z-10 flex h-8 items-center rounded-[50px] border-0 bg-transparent px-4 ${
+                            tab !== key && "cursor-pointer"
                         }`}
                         onClick={() => setTab(key)}
                     >
@@ -93,16 +96,54 @@ const Navbar = ({
                     style={{
                         left: `${left}px`,
                         width: `${sliderWidth}px`,
-                        transition: "left 0.38s",
+                        transition:
+                            sliderWidth > 0
+                                ? "left 500ms cubic-bezier(0.23, 1, 0.32, 1), width 180ms cubic-bezier(0.23, 1, 0.32, 1)"
+                                : "none",
                     }}
                 ></div>
             </div>
-            <a
-                className="contact cursor-pointer transition-opacity duration-200 hover:opacity-50"
-                href={`mailto:${config.email}`}
-            >
-                <p>Contact</p>
-            </a>
+            <div className="nav-socials">
+                <a
+                    className="nav-social"
+                    href="https://x.com/ryadi_os"
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="X profile"
+                >
+                    <span
+                        aria-hidden="true"
+                        className="nav-social-icon nav-social-icon-x"
+                    />
+                    <span className="sr-only">X profile</span>
+                </a>
+                <a
+                    className="nav-social"
+                    href="https://www.linkedin.com/in/ryadi/"
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="LinkedIn profile"
+                >
+                    <span
+                        aria-hidden="true"
+                        className="nav-social-icon nav-social-icon-linkedin"
+                    />
+                    <span className="sr-only">LinkedIn profile</span>
+                </a>
+                <a
+                    className="nav-social"
+                    href="https://github.com/ryadios/"
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="GitHub profile"
+                >
+                    <span
+                        aria-hidden="true"
+                        className="nav-social-icon nav-social-icon-github"
+                    />
+                    <span className="sr-only">GitHub profile</span>
+                </a>
+            </div>
         </nav>
     );
 };

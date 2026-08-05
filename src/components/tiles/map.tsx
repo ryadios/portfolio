@@ -17,6 +17,9 @@ const zoomMap: Record<number, number> = {
     2: 13,
 };
 
+// TEMP MOTION TEST: avoid scale-from-zero and delayed map controls.
+const mapControlTransition = { duration: 0.18, ease: "easeOut" as const };
+
 function MapControls() {
     const { current: map } = useMap();
     const [zoomLevel, setZoomLevel] = useState(2);
@@ -39,17 +42,13 @@ function MapControls() {
         <AnimatePresence>
             {zoomLevel !== 1 && (
                 <Button
-                    initial={{ scale: 0, opacity: 0 }}
-                    exit={{ scale: 0, opacity: 0 }}
+                    initial={{ scale: 0.96, opacity: 0 }}
+                    exit={{ scale: 0.96, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
-                    transition={{
-                        type: "spring",
-                        stiffness: 300,
-                        damping: 15,
-                        delay: 0.5,
-                    }}
+                    transition={mapControlTransition}
                     className="absolute bottom-3.5 left-3.5 size-8"
                     variant="tooltip"
+                    aria-label="Zoom out"
                     onClick={zoomOut}
                 >
                     <MinusIcon className="size-4 stroke-3" />
@@ -59,17 +58,13 @@ function MapControls() {
             {zoomLevel !== 2 && (
                 <Button
                     key="plus"
-                    initial={{ scale: 0, opacity: 0 }}
-                    exit={{ scale: 0, opacity: 0 }}
+                    initial={{ scale: 0.96, opacity: 0 }}
+                    exit={{ scale: 0.96, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
-                    transition={{
-                        type: "spring",
-                        stiffness: 300,
-                        damping: 15,
-                        delay: 0.5,
-                    }}
+                    transition={mapControlTransition}
                     className="absolute right-3.5 bottom-3.5 size-8"
                     variant="tooltip"
+                    aria-label="Zoom in"
                     onClick={zoomIn}
                 >
                     <PlusIcon className="size-4 stroke-3" />
@@ -83,10 +78,10 @@ function Overlay() {
     return (
         <div className="pointer-events-none absolute inset-1/2 flex size-[82px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-4 border-white bg-[#98d0ff80] shadow-[0_4px_12px_rgba(0,0,0,0.25)] transition-all duration-500 group-hover:scale-110 lg:size-24">
             <Image
-                src="/images/cat.png"
-                alt="User"
-                width={50}
-                height={50}
+                src="/images/cat.webp"
+                alt="Map marker"
+                width={128}
+                height={128}
                 sizes="50px"
             />
         </div>
@@ -94,13 +89,25 @@ function Overlay() {
 }
 
 export function MapTile() {
-    const { theme } = useTheme();
+    const { resolvedTheme } = useTheme();
 
     const mapId =
-        theme === "light"
-            ? process.env.NEXT_PUBLIC_MAPTILER_MAP_ID!
-            : process.env.NEXT_PUBLIC_MAPTILER_DARK_MAP_ID!;
+        resolvedTheme === "dark"
+            ? process.env.NEXT_PUBLIC_MAPTILER_DARK_MAP_ID
+            : process.env.NEXT_PUBLIC_MAPTILER_MAP_ID;
     const key = process.env.NEXT_PUBLIC_MAPTILER_KEY;
+
+    if (!mapId || !key) {
+        return (
+            <div
+                className="flex size-full items-center justify-center bg-muted text-muted-foreground"
+                role="img"
+                aria-label="Map unavailable"
+            >
+                Map unavailable
+            </div>
+        );
+    }
 
     const mapStyle = (id: string) =>
         `https://api.maptiler.com/maps/${id}/style.json?key=${key}`;
@@ -113,7 +120,7 @@ export function MapTile() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    transition={{ duration: 0.2, ease: "easeIn" }}
+                    transition={{ duration: 0.2, ease: "easeOut" }}
                     className="absolute inset-0"
                 >
                     <MapLibre

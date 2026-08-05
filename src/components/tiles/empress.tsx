@@ -15,10 +15,10 @@ export function Empress() {
             onMouseLeave={() => setHovered(false)}
         >
             <Image
-                src="/images/empress.png"
+                src="/images/empress.webp"
                 alt="empress"
-                width={1080}
-                height={1920}
+                width={768}
+                height={1365}
                 sizes="(max-width: 799px) 50vw, (max-width: 1200px) 25vw, 300px"
                 className="absolute top-0 left-0 size-full object-cover transition-transform duration-800 group-hover:scale-105"
             />

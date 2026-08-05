@@ -7,11 +7,11 @@ export function AboutMe() {
         <div className="flex size-full flex-col items-start justify-end gap-6 overflow-hidden px-8 py-6 sm:px-10 sm:py-8">
             <div className="pointer-events-none flex items-center justify-between">
                 <Image
-                    src="/images/cat-profile.png"
+                    src="/images/cat-profile.webp"
                     alt="memoji"
                     className="size-[50px] max-h-32 sm:size-[100px]"
-                    width={100}
-                    height={100}
+                    width={256}
+                    height={256}
                     sizes="(max-width: 374px) 50px, 100px"
                 />
             </div>

@@ -18,10 +18,10 @@ export function Fluence() {
             onMouseLeave={() => setHovered(false)}
         >
             <Image
-                src="/images/fluence.png"
+                src="/images/fluence.webp"
                 alt="fluence"
-                width={1920}
-                height={1080}
+                width={1280}
+                height={720}
                 sizes="(max-width: 799px) 100vw, 50vw"
                 className="absolute top-0 left-0 size-full object-cover transition-transform duration-800 group-hover:scale-105"
             />
