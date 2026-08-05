@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import type { HTMLAttributeAnchorTarget, ReactNode } from "react";
 import { cn } from "@/lib/utils";
 

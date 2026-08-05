@@ -12,10 +12,14 @@ interface SpotifyArtist {
 interface SpotifyTrack {
     name: string;
     artists: SpotifyArtist[];
+    album?: {
+        images?: Array<{ url?: string }>;
+    };
+    external_urls?: { spotify?: string };
 }
 
 function isSpotifyTrack(value: unknown): value is SpotifyTrack {
-    return (
+    if (
         typeof value === "object" &&
         value !== null &&
         "name" in value &&
@@ -32,7 +36,9 @@ function isSpotifyTrack(value: unknown): value is SpotifyTrack {
                 typeof artist.name === "string" &&
                 artist.name.trim().length > 0,
         )
-    );
+    )
+        return true;
+    return false;
 }
 
 function isRecentlyPlayedPayload(
@@ -99,6 +105,8 @@ export async function GET() {
                     .slice(0, 2)
                     .map((artist) => artist.name)
                     .join(", "),
+                artUrl: firstItem.track.album?.images?.[0]?.url,
+                spotifyUrl: firstItem.track.external_urls?.spotify,
             },
         });
     } catch (error) {

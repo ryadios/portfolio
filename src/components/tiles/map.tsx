@@ -1,13 +1,13 @@
 "use client";
 
 import { Map as MapLibre, useMap } from "@vis.gl/react-maplibre";
-import { AnimatePresence, motion } from "framer-motion";
 import { MinusIcon, PlusIcon } from "lucide-react";
 import { setWorkerUrl } from "maplibre-gl";
-import { useEffect, useState } from "react";
-import "maplibre-gl/dist/maplibre-gl.css";
+import { AnimatePresence, motion } from "motion/react";
 import Image from "next/image";
 import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
+import "maplibre-gl/dist/maplibre-gl.css";
 import { Button } from "../button";
 
 setWorkerUrl("https://unpkg.com/maplibre-gl@6.1.0/dist/maplibre-gl-worker.mjs");
@@ -17,7 +17,6 @@ const zoomMap: Record<number, number> = {
     2: 13,
 };
 
-// TEMP MOTION TEST: avoid scale-from-zero and delayed map controls.
 const mapControlTransition = { duration: 0.18, ease: "easeOut" as const };
 
 function MapControls() {
@@ -78,10 +77,10 @@ function Overlay() {
     return (
         <div className="pointer-events-none absolute inset-1/2 flex size-[82px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-4 border-white bg-[#98d0ff80] shadow-[0_4px_12px_rgba(0,0,0,0.25)] transition-all duration-500 group-hover:scale-110 lg:size-24">
             <Image
-                src="/images/cat.webp"
-                alt="Map marker"
-                width={128}
-                height={128}
+                src="/images/cat.png"
+                alt="User"
+                width={50}
+                height={50}
                 sizes="50px"
             />
         </div>
@@ -95,9 +94,9 @@ export function MapTile() {
         resolvedTheme === "dark"
             ? process.env.NEXT_PUBLIC_MAPTILER_DARK_MAP_ID
             : process.env.NEXT_PUBLIC_MAPTILER_MAP_ID;
-    const key = process.env.NEXT_PUBLIC_MAPTILER_KEY;
+    const apiKey = process.env.NEXT_PUBLIC_MAPTILER_KEY;
 
-    if (!mapId || !key) {
+    if (!mapId || !apiKey) {
         return (
             <div
                 className="flex size-full items-center justify-center bg-muted text-muted-foreground"
@@ -109,8 +108,7 @@ export function MapTile() {
         );
     }
 
-    const mapStyle = (id: string) =>
-        `https://api.maptiler.com/maps/${id}/style.json?key=${key}`;
+    const mapStyle = `https://api.maptiler.com/maps/${mapId}/style.json?key=${apiKey}`;
 
     return (
         <div className="relative h-full w-full overflow-hidden rounded-[14px]">
@@ -130,7 +128,7 @@ export function MapTile() {
                             zoom: 13,
                         }}
                         style={{ width: "100%", height: "100%" }}
-                        mapStyle={mapStyle(mapId)}
+                        mapStyle={mapStyle}
                         attributionControl={false}
                         dragPan={false}
                         scrollZoom={false}

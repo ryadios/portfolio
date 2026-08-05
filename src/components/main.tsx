@@ -1,6 +1,6 @@
 "use client";
 
-import { MotionConfig } from "framer-motion";
+import { MotionConfig } from "motion/react";
 import { useState } from "react";
 import { TabKey } from "@/utils/tabs";
 import Layout from "./layout";
@@ -12,7 +12,6 @@ export function Main() {
     const [w, setW] = useState(0);
 
     return (
-        /* TEMP MOTION TEST: respect reduced-motion preferences during the experiment. */
         <MotionConfig reducedMotion="user">
             <main>
                 <Navbar
