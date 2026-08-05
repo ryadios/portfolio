@@ -16,6 +16,7 @@ export function DarkMode() {
             <button
                 type="button"
                 aria-label="Toggle color theme"
+                aria-pressed={theme === "dark"}
                 className="no-drag relative flex h-12 w-20 cursor-pointer items-center rounded-[40px] border-0 bg-[#f0f2f8] dark:bg-muted dark:shadow-[inset_0_0_0_2px_rgb(48,54,61)]"
                 onClick={() =>
                     theme === "light" ? setTheme("dark") : setTheme("light")

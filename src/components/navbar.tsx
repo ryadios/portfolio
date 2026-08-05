@@ -73,6 +73,7 @@ const Navbar = ({
                     <button
                         type="button"
                         key={key}
+                        aria-pressed={tab === key}
                         ref={(el) => {
                             tabRefs.current[key] = el;
                         }}
