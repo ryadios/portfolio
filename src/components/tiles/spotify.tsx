@@ -152,7 +152,7 @@ export function Spotify() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={`Open ${lastPlayedTrack.song} on Spotify`}
-                    className="no-drag absolute -top-9 -right-9 z-0 block aspect-square size-[148px] overflow-hidden rounded-full bg-card shadow-[0_18px_26px_-18px_rgba(0,0,0,0.55),_0_6px_12px_-6px_rgba(0,0,0,0.25)] min-[800px]:max-[1200px]:top-1/2 min-[800px]:max-[1200px]:right-[-75px] min-[800px]:max-[1200px]:h-[110%] min-[800px]:max-[1200px]:w-auto min-[800px]:max-[1200px]:-translate-y-1/2"
+                    className="no-drag absolute -top-9 -right-9 z-0 block aspect-square size-[148px] overflow-hidden rounded-full bg-card shadow-[0_10px_24px_-12px_rgba(0,0,0,0.3)] min-[800px]:max-[1200px]:top-1/2 min-[800px]:max-[1200px]:right-[-75px] min-[800px]:max-[1200px]:h-[110%] min-[800px]:max-[1200px]:w-auto min-[800px]:max-[1200px]:-translate-y-1/2"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={fadeTransition}
