@@ -12,7 +12,6 @@
         "fix": "biome check --write --unsafe ."
     },
     "dependencies": {
-        "@types/react-resizable": "^4.0.0",
         "@vercel/analytics": "^2.0.1",
         "@vis.gl/react-maplibre": "^8.1.2",
         "clsx": "^2.1.1",

@@ -1,8 +1,19 @@
 "use client";
 
+import { Check, Mail } from "lucide-react";
+import { AnimatePresence, motion } from "motion/react";
 import Image from "next/image";
-import { useEffect, useLayoutEffect, useRef } from "react";
+import {
+    useCallback,
+    useEffect,
+    useLayoutEffect,
+    useRef,
+    useState,
+} from "react";
 import { TabKey } from "@/utils/tabs";
+import { config } from "../../config";
+
+const copyResetDuration = 2000;
 
 interface NavbarProps {
     tab: TabKey;
@@ -24,6 +35,9 @@ const Navbar = ({
     setX,
     setW,
 }: NavbarProps) => {
+    const [emailCopied, setEmailCopied] = useState(false);
+    const copyResetTimeout = useRef<ReturnType<typeof setTimeout>>(null);
+
     const tabs = [
         { key: TabKey.Home, label: "All" },
         { key: TabKey.About, label: "About" },
@@ -61,6 +75,26 @@ const Navbar = ({
             window.removeEventListener("resize", calculateSliderPosition);
         };
     }, [tab, setW, setX]);
+
+    const copyEmail = useCallback(async () => {
+        if (copyResetTimeout.current) clearTimeout(copyResetTimeout.current);
+
+        try {
+            await navigator.clipboard.writeText(config.email);
+            setEmailCopied(true);
+            copyResetTimeout.current = setTimeout(
+                () => setEmailCopied(false),
+                copyResetDuration,
+            );
+        } catch {}
+    }, []);
+
+    useEffect(() => {
+        return () => {
+            if (copyResetTimeout.current)
+                clearTimeout(copyResetTimeout.current);
+        };
+    }, []);
 
     return (
         <nav className="responsive-nav font-medium text-sm">
@@ -104,6 +138,51 @@ const Navbar = ({
                 ></div>
             </div>
             <div className="nav-socials">
+                <button
+                    type="button"
+                    className="nav-social cursor-pointer border-0 bg-transparent p-0"
+                    aria-label={emailCopied ? "Copied" : "Copy email address"}
+                    disabled={emailCopied}
+                    onClick={copyEmail}
+                >
+                    <span
+                        aria-hidden="true"
+                        className="relative block size-[18px]"
+                    >
+                        <AnimatePresence initial={false} mode="popLayout">
+                            <motion.span
+                                key={emailCopied ? "check" : "mail"}
+                                className="absolute inset-0 flex items-center justify-center"
+                                initial={{
+                                    opacity: 0,
+                                    scale: 0.25,
+                                    filter: "blur(2px)",
+                                }}
+                                animate={{
+                                    opacity: 1,
+                                    scale: 1,
+                                    filter: "blur(0px)",
+                                }}
+                                exit={{
+                                    opacity: 0,
+                                    scale: 0.25,
+                                    filter: "blur(2px)",
+                                }}
+                                transition={{
+                                    type: "spring",
+                                    duration: 0.3,
+                                    bounce: 0,
+                                }}
+                            >
+                                {emailCopied ? (
+                                    <Check size={18} strokeWidth={2} />
+                                ) : (
+                                    <Mail size={20} strokeWidth={2} />
+                                )}
+                            </motion.span>
+                        </AnimatePresence>
+                    </span>
+                </button>
                 <a
                     className="nav-social"
                     href="https://x.com/ryadi_os"
@@ -143,6 +222,9 @@ const Navbar = ({
                     />
                     <span className="sr-only">GitHub profile</span>
                 </a>
+                <span className="sr-only" aria-live="polite">
+                    {emailCopied ? "Email copied to clipboard" : ""}
+                </span>
             </div>
         </nav>
     );
