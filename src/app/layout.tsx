@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     metadataBase: new URL("https://ryadi.dev"),
     title: "Aditya - Developer & Product Designer",
     description:
-        "Developer & Product Designer building thoughtful digital products with React, Next.js, Node.js, and design.",
+        "Developer and product designer from India, building thoughtful digital experiences while exploring Linux, startups, music, and the occasional side quest.",
     alternates: {
         canonical: "/",
     },
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     openGraph: {
         title: "Aditya - Developer & Product Designer",
         description:
-            "Developer & Product Designer building thoughtful digital products with React, Next.js, Node.js, and design.",
+            "Developer and product designer from India, building thoughtful digital experiences while exploring Linux, startups, music, and the occasional side quest.",
         url: "/",
         siteName: "Aditya",
         type: "website",
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
         card: "summary_large_image",
         title: "Aditya - Developer & Product Designer",
         description:
-            "Developer & Product Designer building thoughtful digital products with React, Next.js, Node.js, and design.",
+            "Developer and product designer from India, building thoughtful digital experiences while exploring Linux, startups, music, and the occasional side quest.",
         images: ["/og-image.png"],
     },
 };
